@@ -1,9 +1,11 @@
 package com.pan.auctionsystem;
 
+import com.pan.auctionsystem.auctioning.service.AuctionSchedule;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -14,26 +16,32 @@ import java.util.Date;
 @SpringBootTest
 public class ActionsystemApplicationTests {
 
+    @Autowired
+    AuctionSchedule schedule;
+
     @Test
     public void contextLoads() {
-        Long ll = System.currentTimeMillis();
-        System.out.println(ll.toString());
+//        Long ll = System.currentTimeMillis();
+//        System.out.println(ll.toString());
+//
+//        Date date = new Date(ll);
+//        System.out.println(date);
+//        System.out.println(date.getTime());
+//
+//        SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+//
+//        String dateString = sdf.format(date);
+//        System.out.println(dateString);
+//
+//        try {
+//            Long lll = sdf.parse(dateString).getTime();
+//            System.out.println(lll);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
-        Date date = new Date(ll);
-        System.out.println(date);
-        System.out.println(date.getTime());
 
-        SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
-
-        String dateString = sdf.format(date);
-        System.out.println(dateString);
-
-        try {
-            Long lll = sdf.parse(dateString).getTime();
-            System.out.println(lll);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        schedule.putActionScheduleInNextHour();
 
     }
 

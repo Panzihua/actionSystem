@@ -1,4 +1,4 @@
-package com.pan.auctionsystem.auctioning.model;
+package com.pan.auctionsystem.model;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class AuctionItem {
     Long itemStartDate;
     Long itemEndDate;
     double itemStartingPrice;
-    double itemIncreasePirce;
+    double itemIncreasePrice;
     String itemPicture;
 
     int itemShopId;
