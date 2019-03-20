@@ -1,5 +1,6 @@
 package com.pan.auctionsystem;
 
+import com.pan.auctionsystem.auctioning.domin.ItemOrderDao;
 import com.pan.auctionsystem.auctioning.service.AuctionSchedule;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class ActionsystemApplicationTests {
 
     @Autowired
-    AuctionSchedule schedule;
+    ItemOrderDao dao;
 
     @Test
     public void contextLoads() {
@@ -42,6 +43,7 @@ public class ActionsystemApplicationTests {
 
 
 //        schedule.putActionScheduleInNextHour();
+        dao.addNewOrder(2, 1, Long.valueOf(1), 5);
 
     }
 

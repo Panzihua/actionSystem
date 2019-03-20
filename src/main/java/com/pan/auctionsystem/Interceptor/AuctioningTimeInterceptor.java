@@ -28,7 +28,7 @@ public class AuctioningTimeInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println(request);
-        RequestWrapper myRequestWrapper = new RequestWrapper(request);
+//        RequestWrapper myRequestWrapper = new RequestWrapper(request);
         return false;
     }
 }

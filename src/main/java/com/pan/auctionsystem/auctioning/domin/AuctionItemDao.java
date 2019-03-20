@@ -1,4 +1,4 @@
-package com.pan.auctionsystem.util.domin;
+package com.pan.auctionsystem.auctioning.domin;
 
 import com.pan.auctionsystem.model.AuctionItem;
 import org.apache.ibatis.annotations.Param;

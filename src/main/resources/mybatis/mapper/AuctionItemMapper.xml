@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pan.auctionsystem.util.domin.AuctionItemDao">
+<mapper namespace="com.pan.auctionsystem.auctioning.domin.AuctionItemDao">
 
     <select id="selectItemDateTime2Redis" useCache="false" parameterType="Long" resultType="AuctionItem">
         select item_id, item_name, item_start_date, item_end_date
