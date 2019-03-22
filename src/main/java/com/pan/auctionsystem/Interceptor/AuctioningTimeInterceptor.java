@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.RequestWrapper;
+import java.io.IOException;
 import java.util.Map;
 
 public class AuctioningTimeInterceptor implements HandlerInterceptor {
@@ -27,8 +28,12 @@ public class AuctioningTimeInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println(request);
-//        RequestWrapper myRequestWrapper = new RequestWrapper(request);
+        System.out.println("进拦截器了");
+        try {
+            response.sendRedirect("/index.html");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         return false;
     }
 }

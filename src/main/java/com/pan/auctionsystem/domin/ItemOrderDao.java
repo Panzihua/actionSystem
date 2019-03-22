@@ -1,4 +1,4 @@
-package com.pan.auctionsystem.auctioning.domin;
+package com.pan.auctionsystem.domin;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
