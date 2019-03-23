@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface ItemOrderDao {
     public int addNewOrder(@Param("userId")int userId, @Param("itemId")int itemId,
                            @Param("createTime")Long createTime, @Param("itemPrice")double itemPrice);
+    public int changeItemStatus(@Param("itemId") int itemId);
 }

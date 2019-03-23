@@ -5,4 +5,10 @@
         insert into item_order (user_id, item_id, order_create_time, item_price)
         value (#{userId}, #{itemId}, #{createTime}, #{itemPrice});
     </insert>
+
+    <update id="changeItemStatus">
+        update auction_item set
+        item_status = 0
+        where item_id = #{itemId}
+    </update>
 </mapper>

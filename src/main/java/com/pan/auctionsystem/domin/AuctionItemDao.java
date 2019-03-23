@@ -1,13 +1,13 @@
 package com.pan.auctionsystem.domin;
 
 import com.pan.auctionsystem.model.AuctionItem;
+import com.pan.auctionsystem.util.myInterface.domin.CRUDDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository("auctionItemDao")
-public interface AuctionItemDao {
-    public List selectItemByCondition(AuctionItem auctionItem);
-    public List<AuctionItem> selectItemDateTime2Redis(@Param("startTime")Long startTime, @Param("endTime")Long endTime);
+public interface AuctionItemDao extends CRUDDao<AuctionItem> {
+    public void setDateForItem(@Param("itemId")int itemId, @Param("startDate")Long startDate,
+                               @Param("endDate")Long endDate);
 }

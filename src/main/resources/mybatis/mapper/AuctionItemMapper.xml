@@ -2,9 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pan.auctionsystem.domin.AuctionItemDao">
 
-    <select id="selectItemDateTime2Redis" useCache="false" parameterType="Long" resultType="AuctionItem">
-        select item_id, item_name, item_start_date, item_end_date, item_starting_price
-        from auction_item
-        where item_start_date between #{startTime} and #{endTime}
+    <select id="selectAll" useCache="true" resultType="AuctionItem">
+        select item_id, item_name, item_from, item_shelf_date,
+        item_start_date, item_end_date, item_shop_id, user_name as shopName,
+        item_starting_price, item_increase_pirce, item_picture
+        from auction_item, auction_user
+        where user_id = item_shop_id;
     </select>
+
+    <select id="selectByCondition" resultType="AuctionItem">
+        select item_id, item_name, item_from, item_shelf_date,
+        item_start_date, item_end_date, item_shop_id, user_name as shopName,
+        item_starting_price, item_increase_pirce, item_picture
+        from auction_item, auction_user
+        where user_id = item_shop_id
+        <if test="model.itemName != null">
+          and item_name like #{model.itemName}
+        </if>
+        <if test="model.itemFrom != null">
+            and item_from like #{model.itemFrom}
+        </if>
+        <if test="model.itemShelfDate != null">
+            and item_shelf_date >= #{model.itemShelfDate}
+        </if>
+        <if test="model.shopName != null">
+            and user_name like #{model.shopName}
+        </if>
+    </select>
+
+    <select id="findOneById" resultType="AuctionItem">
+        select item_id, item_name, item_from, item_shelf_date,
+        item_start_date, item_end_date, item_shop_id, user_name as shopName,
+        item_starting_price, item_increase_pirce, item_picture
+        from auction_item, auction_user
+        where user_id = item_shop_id and item_id = #{modelId}
+    </select>
+
+    <update id="updateOneByModel">
+      update auction_item set
+      item_name = #{model.itemName},
+      item_from = #{moddel.itemFrom},
+      item_starting_price = #{model.itemStartingPrice},
+      item_increase_pirce = #{model.itemIncreasePrice},
+      item_picture = #{model.itemPicture}
+      where item_id = #{model.itemId}
+    </update>
+
+    <delete id="deleteOneById">
+        delete from auction_item where item_id = #{modelId}
+    </delete>
+    
+    <insert id="addOneByModel" useGeneratedKeys="true">
+        insert into auction_item (item_name, item_from, item_shelf_date,
+        item_shop_id, item_starting_price, item_increase_pirce, item_picture)
+        value (#{model.itemName}, #{model.itemFrom}, #{itemShelfDate},
+        #{model.itemShopId}, #{model.itemStartingPrice}, #{model.itemIncreasePrice}, #{model.itemPicture})
+    </insert>
+
+    <update id="setDateForItem">
+        update auction_item set
+        item_start_date = #{startDate},
+        item_end_date = #{endDate}
+        where item_id = #{itemId}
+    </update>
+
 </mapper>

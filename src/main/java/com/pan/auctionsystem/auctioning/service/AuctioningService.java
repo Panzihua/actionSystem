@@ -1,7 +1,6 @@
 package com.pan.auctionsystem.auctioning.service;
 
 import com.pan.auctionsystem.model.OfferAPrice;
-import com.pan.auctionsystem.model.UpdateAuctionPageModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

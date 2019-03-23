@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pan.auctionsystem.domin.AuctionUserDao">
+    <select id="findOneByAccount" resultType="AuctionUser">
+        select user_id, user_account, user_password, is_shop, user_name
+        from auction_user, auction_user_info
+        where user_account = #{account}
+    </select>
+
+    <select id="findOneById" resultType="AuctionUserInfo">
+        select user_id, user_name, user_credential_type, user_credential_num,
+        user_sex, user_birth, user_age, user_registered_date, user_account_year
+        from auction_user_info
+        where user_id = #{modelId}
+    </select>
+    
+    <update id="updateOneByModel">
+        update auction_user_info set 
+        user_name = #{model.userName},
+        user_credential_type = #{model.userCredentialType},
+        user_credential_num = #{model.userCredentialNum},
+        user_sex = #{model.userSex},
+        user_birth = #{model.userBirth} 
+        where user_id = #{model.userId}
+    </update>
+    
+    <insert id="addAuctionUserByModel" useGeneratedKeys="true">
+        insert into auction_user (user_account, user_password, is_shop)
+        value (#{model.userAccount}, #{model.userPassword}, #{model.isShop})
+    </insert>
+
+</mapper>
