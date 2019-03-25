@@ -4,12 +4,12 @@
     <select id="findOneByAccount" resultType="AuctionUser">
         select user_id, user_account, user_password, is_shop, user_name
         from auction_user, auction_user_info
-        where user_account = #{account}
+        where user_account = #{account} and auction_user.user_id = auction_user_info.user_id
     </select>
 
     <select id="findOneById" resultType="AuctionUserInfo">
         select user_id, user_name, user_credential_type, user_credential_num,
-        user_sex, user_birth, user_age, user_registered_date, user_account_year
+        user_sex, user_birth, user_age, user_registered_date
         from auction_user_info
         where user_id = #{modelId}
     </select>
@@ -27,6 +27,13 @@
     <insert id="addAuctionUserByModel" useGeneratedKeys="true">
         insert into auction_user (user_account, user_password, is_shop)
         value (#{model.userAccount}, #{model.userPassword}, #{model.isShop})
+    </insert>
+
+    <insert id="addAuctionUserInfoByModel">
+        insert into auction_user_info (user_id, user_name, user_credential_type,
+        user_credential_num, user_sex, user_birth, user_account_year)
+        value (#{model.userId}, #{model.userName}, #{model.userCredentialType},
+        #{model.userCredentialNum}, #{model.userSex}, #{model.userBirth})
     </insert>
 
 </mapper>

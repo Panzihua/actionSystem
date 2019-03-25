@@ -1,8 +1,10 @@
 package com.pan.auctionsystem;
 
 import com.pan.auctionsystem.domin.AuctionItemDao;
+import com.pan.auctionsystem.domin.AuctionUserDao;
 import com.pan.auctionsystem.domin.ItemOrderDao;
 import com.pan.auctionsystem.model.AuctionItem;
+import com.pan.auctionsystem.model.AuctionUser;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.Test;
@@ -26,16 +28,16 @@ public class ActionsystemApplicationTests {
     @Setter
     private RedisTemplate template;
 
-    @Resource(name = "auctionItemDao")
-    private AuctionItemDao dao;
+    @Resource(name = "auctionUserDao")
+    private AuctionUserDao dao;
 
     @Test
     public void contextLoads() {
-        AuctionItem item = new AuctionItem();
-        item.setItemName("%鸡%");
-
-        List list = dao.selectAll();
-        System.out.println(list);
+        AuctionUser user = new AuctionUser();
+        user.setIsShop(0);
+        user.setUserAccount("testUser");
+        user.setUserPassword("asda");
+        System.out.println(dao.addAuctionUserByModel(user));
     }
 
 }

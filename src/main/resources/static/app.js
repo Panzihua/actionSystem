@@ -84,4 +84,14 @@ $(function () {
     $("#addComment").click(function () {
        sendComment();
     });
+
+    $("#testDate").click(function () {
+        var dateInput = $("#dateInput").val();
+        console.log($("#dateInput").val());
+
+        var date = new Date();
+        console.log(date);
+        console.log(date.getTime());
+
+    });
 });

@@ -11,4 +11,10 @@
         item_status = 0
         where item_id = #{itemId}
     </update>
+
+    <update id="updateAddressById">
+        update item_order set
+        address = #{address}
+        where order_id = #{modelId}
+    </update>
 </mapper>

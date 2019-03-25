@@ -6,8 +6,11 @@ import com.pan.auctionsystem.util.myInterface.domin.CRUDDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository("userDao")
+import java.util.List;
+
+@Repository("auctionUserDao")
 public interface AuctionUserDao extends CRUDDao<AuctionUserInfo> {
     public AuctionUser findOneByAccount(@Param("account")String userAccount);
     public int addAuctionUserByModel(@Param("model")AuctionUser model);
+    public int addAuctionUserInfoByModel(@Param("model")AuctionUserInfo userInfo);
 }

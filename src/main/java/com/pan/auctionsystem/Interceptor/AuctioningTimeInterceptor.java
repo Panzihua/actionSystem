@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.RequestWrapper;
 import java.io.IOException;
-import java.util.Map;
 
 public class AuctioningTimeInterceptor implements HandlerInterceptor {
 
@@ -30,7 +27,7 @@ public class AuctioningTimeInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println("进拦截器了");
         try {
-            response.sendRedirect("/index.html");
+            response.sendRedirect("/templates/index.html");
         }catch (IOException e){
             e.printStackTrace();
         }
