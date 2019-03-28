@@ -72,5 +72,18 @@
         from auction_item as item, auction_user as shop, auction_user_subscript as sb
         where item.item_shop_id = shop.user_id and sb.user_id = #{userId} and sb.item_id = item.item_id
     </select>
+    
+    <select id="selectAllByShopId" resultType="AuctionItem">
+        select item_id, item_name, item_from, item_shelf_date,
+        item_start_date, item_end_date, item_shop_id, user_name as shopName,
+        item_starting_price, item_increase_pirce, item_picture
+        from auction_item, auction_user
+        where user_id = item_shop_id and item_status = 1 and item_shop_id = #{shopId}
+    </select>
 
+    <select id="wasSubscribed" resultType="Integer">
+        select *
+        from auction_user_subscript
+        where user_id = #{userId} and item_id = #{itemId}
+    </select>
 </mapper>

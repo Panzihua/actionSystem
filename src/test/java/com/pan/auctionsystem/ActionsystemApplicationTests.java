@@ -16,28 +16,19 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ActionsystemApplicationTests {
 
-    @Autowired
-    @Qualifier("stringRedisTemplate")
-    @Getter
-    @Setter
-    private RedisTemplate template;
-
-    @Resource(name = "auctionUserDao")
-    private AuctionUserDao dao;
+    @Resource
+    private AuctionItemDao dao;
 
     @Test
     public void contextLoads() {
-        AuctionUser user = new AuctionUser();
-        user.setIsShop(0);
-        user.setUserAccount("testUser");
-        user.setUserPassword("asda");
-        System.out.println(dao.addAuctionUserByModel(user));
+        System.out.println(dao.wasSubscribed(1, 1));
     }
 
 }

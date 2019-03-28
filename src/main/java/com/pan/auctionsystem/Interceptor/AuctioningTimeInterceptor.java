@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.temporal.Temporal;
 
 public class AuctioningTimeInterceptor implements HandlerInterceptor {
 
@@ -25,12 +26,21 @@ public class AuctioningTimeInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println("进拦截器了");
+        String ip = request.getRemoteAddr();
+
+        Object userId = template.opsForValue().get(ip);
+
         try {
-            response.sendRedirect("/templates/index.html");
+            if (userId == null) {
+                response.sendRedirect("登录页面");
+                return false;
+            } else {
+                return true;
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
+
         return false;
     }
 }

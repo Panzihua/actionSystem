@@ -13,4 +13,6 @@ public interface AuctionItemDao extends CRUDDao<AuctionItem> {
     public void setDateForItem(@Param("itemId")int itemId, @Param("startDate")Long startDate,
                                @Param("endDate")Long endDate);
     public List<AuctionItem> selectAllSubscribeItem(@Param("userId")int userId);
+    public List<AuctionItem> selectAllByShopId(@Param("shopId")int shopId);
+    public Integer wasSubscribed(@Param("userId")int userId, @Param("itemId")int itemId);
 }

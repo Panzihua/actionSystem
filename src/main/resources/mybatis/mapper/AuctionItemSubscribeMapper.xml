@@ -6,8 +6,8 @@
         value (#{model.userId}, #{model.itemId})
     </insert>
 
-    <delete id="deleteOneById">
+    <delete id="deleteOneByUserIdNItemId">
         delete from auction_user_subscript
-        where subscript_id = #{modelId}
+        where user_id = #{userId} and item_id = #{itemId}
     </delete>
 </mapper>

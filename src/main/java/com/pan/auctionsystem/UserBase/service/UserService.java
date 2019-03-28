@@ -14,7 +14,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service("userService")
 public class UserService {
@@ -40,15 +40,16 @@ public class UserService {
     }
 
     public void putUserInRedis(AuctionUser user, String ip){
-        BoundHashOperations<String, String, String> userList = template.boundHashOps("userList");
+        template.opsForValue().set("user_" + user.getUserAccount(), ip);
 
         //userList放置account ip对, 再放置String ip userId对
-        userList.put(user.getUserAccount(), ip);
+        template.opsForValue().set("user_" + user.getUserAccount(), ip);
+        template.expire("user_" + user.getUserAccount(), 1, TimeUnit.HOURS);
         template.opsForValue().set(ip, user.getUserId());
+        template.expire(ip, 1, TimeUnit.HOURS);
     }
 
     public void signUpService(AuctionUserPackage userPackage){
-        System.out.println(dao.addAuctionUserByModel(userPackage.getUser()));
         dao.addAuctionUserInfoByModel(userPackage.getUserInfo());
     }
 }

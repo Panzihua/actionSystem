@@ -8,5 +8,5 @@ public interface ItemOrderDao {
     public int addNewOrder(@Param("userId")int userId, @Param("itemId")int itemId,
                            @Param("createTime")Long createTime, @Param("itemPrice")double itemPrice);
     public int changeItemStatus(@Param("itemId") int itemId);
-    public int updateAddressById(@Param("modelId")int addressId, @Param("address")String address);
+    public int updateAddressById(@Param("modelId")int orderId, @Param("address")String address);
 }

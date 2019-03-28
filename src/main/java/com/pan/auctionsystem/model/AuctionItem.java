@@ -15,4 +15,6 @@ public class AuctionItem {
     private double itemStartingPrice;
     private double itemIncreasePrice;
     private String itemPicture;
+
+    private int wasSubscribe;
 }
