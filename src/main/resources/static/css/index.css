@@ -1,0 +1,130 @@
+
+/*----------------nav-bar------------------------*/
+#navigation{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    box-shadow:0 2px 0 0 #EAEAEA;
+    box-sizing: border-box;
+    padding: 0 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#navigation>div{
+    box-sizing: border-box;
+    display: flex;
+}
+#navigation p{
+    font-size: 2.8rem;
+}
+#navigation>div:first-child{
+    align-items: center;
+}
+#navigation .main-logo{
+    display: block;
+    height: 4.5rem;
+    margin: 1rem 1rem 1rem 0;
+    cursor: pointer;
+}
+#navigation .admit-name{
+    font-size: 1.6rem;
+}
+#navigation>div:last-child{
+    align-items: center;
+}
+#navigation>div:last-child img{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 2.1rem;
+    cursor: pointer;
+}
+#navigation >div:first-child p{
+    color: #333;
+    font-weight: 600;
+    white-space: nowrap;
+}
+#navigation >div:last-child p{
+    color: #2E5E99;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+/*--------------nav-bar--------------------*/
+#navBar{
+    height: 100%;
+    box-sizing: border-box;
+    min-height: 890px;
+    background: #2F5F9B;
+    padding: 1rem 1rem 30rem;
+}
+.nav > li > a{
+    padding: 10px 0 10px 10px;
+}
+#navBar .nav-pills > li >a{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+}
+#navBar .nav-pills > li >a>img{
+    display: block;
+    width: 2.8rem;
+    height:2.8rem;
+    margin-right: 1.5rem;
+    visibility: hidden;
+}
+#navBar .nav-pills > li >a:hover
+{
+    background: #fff!important;
+}
+
+.nav-pills > li.active > a{
+    font-weight: bold!important;
+    color: #CD2C06 !important;
+    background: #fff !important;
+}
+#page1{
+    padding-top: 15px;
+    overflow-y: auto;
+    min-height: 850px;
+    max-height: 850px;
+}
+/*-------------------copyright-----------------------*/
+#copyright{
+    width: 100%;
+    background:#F3F3F3;
+    height: 3.1rem;
+    line-height: 3.1rem;
+    font-size: 1.3rem;
+    color: #A0A0A0;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+#copyright img{
+    margin-left: 15px;
+    cursor: pointer;
+}
+#copyright p{
+    margin: 0;
+}
+.modal{
+    position: relative;
+}
+
+/*------------media query-------------*/
+@media (max-width: 992px){
+    #navigation p {
+        font-size: 2rem;
+    }
+    #navBar .nav-pills > li >a{
+        font-size: 1rem;
+    }
+}
+

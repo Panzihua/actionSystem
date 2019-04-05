@@ -7,12 +7,15 @@ import com.pan.auctionsystem.model.AuctionSubscribeModel;
 import com.pan.auctionsystem.util.myInterface.controller.CRUDController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @Controller("userOpsItemController")
+@RequestMapping("/auctionSystem")
 public class UserOpsItemController implements CRUDController<AuctionItem> {
 
     @Resource(name = "auctionItemService")
@@ -21,15 +24,18 @@ public class UserOpsItemController implements CRUDController<AuctionItem> {
     @Resource(name = "subscribeService")
     private SubscribeService subscribeService;
 
+    @GetMapping("/getAllItem")
     public String selectAll(Model model, HttpServletRequest request) {
         model.addAttribute("itemList", auctionItemService.selectAll());
+        model.addAttribute("now", new Date().getTime());
 
-        return "查询页面"; //首次加载
+        return "ShowItem"; //首次加载
     }
 
-    //Json异步请求
+    @PostMapping("/selectItemByCondition")
+    @ResponseBody
     @Override
-    public List<AuctionItem> selectByCondition(AuctionItem condition) {
+    public List<AuctionItem> selectByCondition(@RequestBody AuctionItem condition) {
         return auctionItemService.selectByCondition(condition);
     }
 

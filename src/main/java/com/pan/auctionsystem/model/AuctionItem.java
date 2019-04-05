@@ -12,9 +12,10 @@ public class AuctionItem {
     private Long itemEndDate;
     private int itemShopId;
     private String shopName;
-    private double itemStartingPrice;
-    private double itemIncreasePrice;
+    private int itemStartingPrice;
+    private int itemIncreasePrice;
     private String itemPicture;
 
     private int wasSubscribe;
+    boolean auctioning;
 }

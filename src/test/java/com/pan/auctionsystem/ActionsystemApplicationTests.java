@@ -5,6 +5,7 @@ import com.pan.auctionsystem.domin.AuctionUserDao;
 import com.pan.auctionsystem.domin.ItemOrderDao;
 import com.pan.auctionsystem.model.AuctionItem;
 import com.pan.auctionsystem.model.AuctionUser;
+import com.pan.auctionsystem.util.translate.TimeTranslation;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.Test;
@@ -16,6 +17,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,12 +25,14 @@ import java.util.List;
 @SpringBootTest
 public class ActionsystemApplicationTests {
 
-    @Resource
-    private AuctionItemDao dao;
+    @Autowired
+    private TimeTranslation translation;
 
     @Test
     public void contextLoads() {
-        System.out.println(dao.wasSubscribed(1, 1));
+        Date date = translation.StringDate2Date("2019-12-10");
+
+        System.out.println(date.getTime());
     }
 
 }

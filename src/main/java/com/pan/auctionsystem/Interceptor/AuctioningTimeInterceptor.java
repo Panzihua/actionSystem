@@ -6,8 +6,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,10 +17,8 @@ import java.time.temporal.Temporal;
 
 public class AuctioningTimeInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    @Qualifier("redisTemplate")
-    @Getter @Setter
-    private RedisTemplate template;
+    @Resource(name = "redisTemplate")
+    private StringRedisTemplate template;
 
     @Autowired
     @Getter @Setter

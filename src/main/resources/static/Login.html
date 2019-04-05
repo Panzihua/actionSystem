@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="dist/bootstrap.css">
+    <script src="dist/jquery.min.js"></script>
+    <script src="dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/case3.css">
+    <title>Login</title>
+</head>
+<body>
+<div class="container" id="Identity-Information">
+    <div class="row" style="display: flex; align-items: center">
+        <div class="col-md-11">
+            <div>
+                <p class="form-title">Auction System</p>
+            </div>
+            <div class="col-md-21">
+                <div class="col-md-21">
+                    <form class="form-horizontal" action="/auctionSystem/signIn" method="post" name="user">
+                        <div class="form-group">
+                            <label for="accountInput" class="col-sm-4 control-label">Account:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="accountInput" name="userAccount">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordInput" class="col-sm-4 control-label">Password:</label>
+                            <div class="col-sm-4">
+                                <input type="password" class="form-control" id="passwordInput" name="userPassword">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group btn-box">
+                        <button id="SignInBtn" type="submit">SignIn</button>
+                        <a id="SignUpBtn" href="/auctionSystem/toSignUp">SignUp</a>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

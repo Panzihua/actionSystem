@@ -1,0 +1,347 @@
+#visitor-register, #visitorRecord {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 14px;
+    width: 100%;
+}
+
+#visitor-register {
+    padding: 15px 15px 15px;
+}
+
+.form-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.form-control{
+    border-radius: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+.form-title::before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+
+}
+
+@media (min-width: 768px) {
+    .form-horizontal .control-label {
+        text-align: left;
+    }
+
+}
+
+#visitor-register .form-group {
+    padding-left: 10px;
+}
+
+#visitor-register .form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    text-align: right;
+    color: #333;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#visitor-register .form-group input {
+    border-radius: 0;
+    font-size: 13px;
+    font-weight: 500;
+    height: 34px;
+    line-height: 34px;
+}
+
+/*----------用来移除向下箭头----------*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+#visitor-register .date-to {
+    display: block;
+    width: 20%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #666;
+
+}
+
+#visitor-register .date-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#visitor-register .date-to{
+    position: relative;
+    left: 40%;
+}
+#visitor-register .btn-box {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#visitor-register .btn-group button {
+    /*padding: 0 10px;*/
+    width: 110px;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 16px;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+
+#visitor-register .check-btn {
+    width: 160px !important;
+    height: 30px !important;
+}
+
+#visitorRecord {
+    padding: 14px;
+}
+
+
+
+/*------------modal----------*/
+#modal-bg {
+    position: absolute;
+    min-height: 850px;
+    height: 850px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   z-index: 999;
+}
+
+#modal-box {
+    box-sizing: border-box;
+    width: 40%;
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    height: 428px;
+}
+
+#modal-box .modal-title {
+    display: flex;
+    justify-content: space-between;
+}
+#modal-caseNum{
+    position: absolute;
+    display: none;
+}
+#modal-caseNum ul li{
+    list-style: none;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    color: #3b3b3b;
+    background: #cccccc;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+
+
+
+#modal-box .box-content .goods-img {
+    width: 312px;
+    height: 268px;
+    margin-top: 40px;
+}
+#modal-box .box-content h2{
+    font-size: 32px;
+}
+/*  */
+#quick-check-out-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+#quick-check-out-box {
+    box-sizing: border-box;
+    width: 40%;
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+    height: 428px;
+}
+#quick-check-out-box .box-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#quick-check-out-box .box-title h3 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+#quick-check-out-box .box-title h3:before{
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+#quick-check-out-box .box-content h2 {
+    margin-top: 15px;
+    color: #30619E;
+    font-size: 28px;
+}
+#quick-check-out-box .box-content h2 span {
+    color: #FF0033;
+}
+#quick-check-out-box .box-content .box-content-img {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+#quick-check-out-box .box-content .box-content-img img {
+    width: 150px;
+}
+#pass-id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pass-id label {
+    font-size: 28px;
+    padding-left: 0px;
+    font-weight: 700;
+}
+#pass-id input {
+    border-radius: 0px;
+    height: 45px;
+}
+#quick-check-out-box .box-content .box-content-btn {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+#quick-check-out-box .box-content .box-content-btn .con-btn {
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    background: #71d2ff;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    border-radius: 3px;
+    margin-right: 20px;
+}
+#quick-check-out-box .box-content .box-content-btn .can-btn {
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    background: #3469b3;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 3px;
+}
+
+
+/**/
+#idcard-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+#idcard-box {
+    box-sizing: border-box;
+    width: 40%;
+    background: #fff;
+    padding: 10px;
+    text-align: center;
+
+}
+
+#idcard-box .idcard-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#idcard-box .idcard-title h3 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+#idcard-box .idcard-title h3:before{
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+#idcard-box .box-content {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    padding: 25px;
+}
+#idcard-box .box-content h2{
+    font-size: 32px;
+}
+#idcard-box .box-content h2:first-child {
+    color: #FF0000;
+    margin: 0px;
+}
+#idcard-box .box-content h2:last-child {
+    color: #2E5EAA;
+    margin: 0px;
+}
+#idcard-box .box-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#idcard-box .box-btn button {
+    width: 130px;
+    height: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+}
+#idcard-box .box-btn #box-btn-l {
+    background: #71d2ff;
+    margin-right: 10px;
+}
+#idcard-box .box-btn #box-btn-r {
+    background: #3469b3;
+    margin-left: 10px;
+}

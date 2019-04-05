@@ -1,0 +1,82 @@
+#identity-page {
+    position: relative;
+}
+#identity-box {
+    margin-top: 15px;
+    padding: 15px;
+    /*border-radius: 4px;*/
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.form-group {
+    margin-bottom: 8px;
+}
+.form-control {
+    border-radius: 0px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.form-title::before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+.form-title {
+    font-size: 16px;
+    font-weight:bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    /*margin-bottom: 15px;*/
+}
+.warning-bg {
+    background-color: #ffffdf;
+}
+.cancelBtn-box {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cancelBtn-box button {
+    width: 110px;
+    height: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.cancelBtn-box button:first-child {
+    margin-right: 50px;
+}
+
+table.th-primary tr > td:nth-last-child(1) {
+    color: #666;
+}
+
+.text-tips {
+    margin-bottom: 20px;
+}
+.text-tips h2 {
+    font-size: 20px;
+}
+
+.check-box {
+    padding-bottom: 0;
+}
+
+.check-box .panel-body {
+    padding-right: 0;
+    padding-left: 0;
+
+}
+
+.control-label {
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: right!important;
+}

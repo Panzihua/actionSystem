@@ -1,0 +1,122 @@
+#Identity-Information {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.font-big{
+    font-size: 13px;
+}
+.form-group {
+    margin-bottom: 8px;
+}
+.form-control {
+    border-radius: 0px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.form-title::before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+.form-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    /*margin-bottom: 15px;*/
+}
+
+
+#Escort-Employee {
+    padding: 15px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 10px;
+}
+#Visitor-Pass {
+    padding: 15px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 10px;
+}
+table{
+    font-size: 13px!important;
+}
+#Contact {
+    padding: 15px;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    margin-bottom: 10px;
+}
+#Check-Out {
+    width: 100%;
+    margin-bottom: 50px;
+}
+#Check-Out-l {
+    padding-left: 0px;
+    margin-bottom: 10px;
+}
+.Check-Out-l-box, .Check-Out-r-box {
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    padding: 5px 10px;
+}
+#Check-Out-l .Check-Out-l-box .Check-Out-l-tab th {
+    background: #e9f6ff;
+    font-weight: bold;
+}
+#Check-Out-l .Check-Out-l-box .Check-Out-l-tab td {
+    font-weight: 400;
+}
+#Check-Out-r {
+    padding-right: 0px;
+    margin-bottom: 10px;
+}
+#Check-Out-r .Check-Out-r-box .Check-Out-r-tab th {
+    background: #ffeaf4;
+    font-size: 13px;
+    font-weight: bold;
+}
+#Check-Out-l .Check-Out-l-box .Check-Out-r-tab td {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.btn-box {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+.btn-box button {
+    width: 110px;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+.btn-box button:first-child {
+    margin-right: 30px;
+    background: #d2d2d2;
+    cursor: text;
+}
+.btn-box button:last-child {
+    background: #2e5eaa;
+}
+.control-label {
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 500;
+}

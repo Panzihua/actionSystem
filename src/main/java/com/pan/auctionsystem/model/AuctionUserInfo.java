@@ -2,6 +2,8 @@ package com.pan.auctionsystem.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class AuctionUserInfo {
     private int userId;
@@ -13,4 +15,6 @@ public class AuctionUserInfo {
     private int userAge;
     private Long userRegisteredDate;
     private int userAccountYear;
+
+    private String userBirthString;
 }

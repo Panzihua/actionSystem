@@ -1,0 +1,61 @@
+#navigation:after{
+    content: '';
+    display: block;
+    clear:both;
+}
+#navigation>div:first-child{
+    float: left;
+    width: 600px;
+}
+#navigation>div:first-child img{
+    display: inline-block;
+    float: left;
+    margin-right: 30px;
+
+}
+#navigation>div:first-child p{
+    line-height: 65px;
+}
+#navigation .ie-right{
+    padding-top: 10px;
+    float: right;
+    position: relative;
+}
+#navigation .ie-right>div{
+    display: inline-block;
+}
+#navigation .ie-right img{
+    position: relative;
+    bottom: 8px;
+}
+#visitor-register .date-to{
+    position: relative;
+    left: 40%;
+}
+
+
+#modal-box,#idcard-box{
+    margin: 0 auto;
+    position: relative;
+    top: 20%;
+}
+#modal-box .h3-primary,#idcard-bg .idcard-title h3{
+    float: left;
+}
+#modal-box .modal-title a{
+    float: right;
+}
+#modal-box .box-content img:first-child{
+    position: relative;
+    right: 10%;
+}
+#modal-caseNum{
+    position: absolute;
+    left:50%;
+}
+
+/*#ie-person-img{*/
+    /*width: 50%;*/
+    /*position: relative;*/
+   /*left: 30%;*/
+/*}*/

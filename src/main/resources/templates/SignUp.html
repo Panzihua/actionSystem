@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
+    <!--[if lt IE10]>
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
+    <![endif]-->
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/case1.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Sign Up</title>
+</head>
+<body>
+<section id="body-box">
+    <div class="container-fluid">
+        <div id="page1" style="max-width: 100%;overflow-x: hidden">
+            <form action="/auctionSystem/signUp" method="post" name="userPackage">
+                <div class="container" id="Identity-Information">
+
+                    <div class="row" style="display: flex; align-items: center">
+                        <div class="col-md-11">
+                            <div>
+                                <p class="form-title">User Account</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 form-horizontal">
+
+                                    <div class="form-group">
+                                        <label for="account" class="col-sm-5 control-label">Account:</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" id="account" name="user.userAccount">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 form-horizontal">
+
+                                    <div class="form-group">
+                                        <label for="password" class="col-sm-5 control-label">Password:</label>
+                                        <div class="col-sm-7">
+                                            <input type="password" class="form-control" id="password" name="user.userPassword">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-12 form-horizontal">
+
+                                    <div class="form-group">
+                                        <label for="isShop" class="col-sm-5 control-label">isShop:</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control" id="isShop" name="user.isShop">
+                                                <option value="0">否</option>
+                                                <option value="1">是</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" id="Escort-Employee">
+                    <div>
+                        <p class="form-title">Information</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="col-md-12 form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="userName" class="col-sm-5 control-label">UserName:</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" id="userName" name="userInfo.userName" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Sex" class="col-sm-5 control-label">Sex:</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" id="Sex" name="userInfo.userSex">
+                                            <option value="1">男</option>
+                                            <option value="0">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12 form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="CredentialType" class="col-sm-5 control-label">Credential Type</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" id="CredentialType" name="userInfo.userCredentialType">
+                                            <option value="1">大陆身份证</option>
+                                            <option value="2">港澳通行证</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birth" class="col-sm-5 control-label">Birth:</label>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" id="birth" name="userInfo.userBirthString">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12 form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="credentialTypeNum" class="col-sm-5 control-label">CredentialType Num:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="credentialTypeNum" name="userInfo.userCredentialNum">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="container">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group btn-box">
+                        <button id="case1-chein-btn" type="submit">Sign Up</button>
+                        <a id="case1-can-btn" type="button" href="/Login.html">Back</a>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+</body>
+</html>

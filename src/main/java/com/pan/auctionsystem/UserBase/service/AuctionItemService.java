@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 @Service("auctionItemService")
@@ -26,7 +27,15 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
 
     @Override
     public List<AuctionItem> selectAll() {
-        return dao.selectAll();
+        List<AuctionItem> list = dao.selectAll();
+        Long now = new Date().getTime();
+
+        for (AuctionItem item : list){
+            if (item.getItemStartDate() > now || item.getItemEndDate() < now) item.setAuctioning(false);
+            else item.setAuctioning(true);
+        }
+
+        return list;
     }
 
     @Override

@@ -1,0 +1,142 @@
+/*html5*/
+article, aside, dialog, footer, header, section, footer, nav, figure, menu {
+    display: block
+}
+
+body, p {
+    margin: 0;
+    padding: 0;
+    font-family: PingFangSC-Semibold;
+    font-size: 10px;
+}
+
+body {
+    background: #f5f5fa;
+    overflow-y: hidden;
+}
+
+html, body {
+    overflow-x: hidden !important;
+    /*overflow-y: hidden!important;*/
+}
+
+h2, h3 {
+    margin: 0;
+}
+
+.h2-danger {
+    margin: 0;
+    color: #f33;
+    font-size: 28px;
+}
+
+h3[class*='h3-primary'], h3[class*='h3-danger'] {
+    font-size: 16px;
+    display: flex;
+    align-items: flex-start;
+}
+
+h3:before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+
+h3.h3-danger:before {
+    background: #f33;
+}
+
+button[class*='success'] {
+    background: #3c9;
+}
+
+button[class*='primary'] {
+    background: #6cf;
+    border-color: transparent;
+}
+
+button[class*='primary']:link,
+button[class*='primary']:visited,
+button[class*='primary']:hover,
+button[class*='primary']:active {
+    background: #5890bf !important;
+}
+
+button[class*='danger'] {
+    background: #2f5f9b;
+}
+
+button[class*='danger']:link,
+button[class*='danger']:visited,
+button[class*='danger']:hover,
+button[class*='danger']:active {
+    background: #2d447f !important;
+}
+
+button[class*='disabled'] {
+    background: #ccc;
+}
+
+button {
+    border: none;
+}
+
+
+/*----table-----*/
+table.th-primary tr td,
+table.th-primary tr th,
+table.th-danger tr td,
+table.th-danger tr th {
+    border: 1px solid #d7d7d7;
+    font-size: 13px;
+}
+
+table.th-primary tbody > tr:nth-of-type(even),
+table.th-danger tbody > tr:nth-of-type(even) {
+    background: #F9F9F9;
+}
+
+table.th-primary th,
+table.th-primary td,
+table.th-danger th,
+table.th-danger td {
+    border: none;
+    text-align: center;
+    color: #666;
+}
+
+table.th-primary th {
+    color: #333;
+    background: #E6F4FE;
+}
+
+table.th-danger th {
+    background: #ffe6f2;
+}
+
+table.th-primary tr > td:nth-last-child(1),
+table.th-danger tr > td:nth-last-child(1) {
+    color: #2F5F9B;
+}
+
+/*------panel--------*/
+.panel-box {
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.panel-body {
+    padding-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: 500;
+}

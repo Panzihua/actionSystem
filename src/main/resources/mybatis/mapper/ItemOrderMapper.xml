@@ -17,4 +17,12 @@
         address = #{address}
         where order_id = #{modelId}
     </update>
+    
+    <select id="selectAll" resultType="ItemOrder">
+        select order_id, user_id, item_id, item_name, user_name as shopName, order_create_time,
+        item_price, address, order_status
+        from item_order, auction_item, auction_user_info
+        where item_order.user_id = #{userId} and item_order.item_id = auction_item.item_id and
+        auction_item.item_shop_id = auction_user_info.user_id
+    </select>
 </mapper>

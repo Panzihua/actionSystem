@@ -1,0 +1,101 @@
+body {
+    background: #f5f5fa;
+    overflow-y: hidden;
+}
+h2, h3 {
+    margin: 0;
+}
+h3[class*='h3-primary'], h3[class*='h3-danger'] {
+    font-size: 16px;
+    display: flex;
+    align-items: flex-start;
+}
+
+h3:before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #2F5F9A;
+    margin-right: 8px;
+}
+/*------panel--------*/
+#person-msg-box{
+    width: 50%;
+}
+.panel-box {
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.panel-body {
+    padding-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+
+.btn-box>button{
+    margin-right: 25px;
+    width: 110px;
+    margin-top: 20px;
+    border-color: transparent;
+}
+button[class*='primary'] {
+    background: #6cf;
+    border-color: transparent;
+}
+button[class*='primary']:link,
+button[class*='primary']:visited,
+button[class*='primary']:hover,
+button[class*='primary']:active {
+    background: #61b0e5 ;
+}
+button[class*='danger'] {
+    background: #f33;
+}
+
+button[class*='danger']:link,
+button[class*='danger']:visited,
+button[class*='danger']:hover,
+button[class*='danger']:active {
+    background: #cf3030 ;
+}
+button.btn-default-pri{
+    background: #33589a;
+    color: #fff;
+    border: transparent;
+}
+button[class*='btn-default-pri']:link,
+button[class*='btn-default-pri']:visited,
+button[class*='btn-default-pri']:hover,
+button[class*='btn-default-pri']:active{
+    background: #2c376e;
+    color: #fff;
+}
+table.person-table tbody>tr>td{
+    border:none;
+}
+table.person-table tr th{
+    background: #000066;
+    color: #fff;
+    border: transparent;
+}
+table.person-table img{
+    width: auto;
+    height: 144px;
+    vertical-align: middle;
+}
+.person-table tr th:first-child,.person-table tr td:first-child{
+    text-align: right;
+    width: 30%;
+}
+.person-table tr th:last-child,.person-table tr td:last-child{
+    width: 60%;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #e1f5ff;
+}

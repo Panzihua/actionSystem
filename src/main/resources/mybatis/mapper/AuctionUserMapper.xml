@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pan.auctionsystem.domin.AuctionUserDao">
     <select id="findOneByAccount" resultType="AuctionUser">
-        select user_id, user_account, user_password, is_shop, user_name
-        from auction_user, auction_user_info
-        where user_account = #{account} and auction_user.user_id = auction_user_info.user_id
+        select a.user_id, user_account, user_password, is_shop, user_name
+        from auction_user as a, auction_user_info as b
+        where user_account = #{account} and a.user_id = b.user_id
     </select>
 
     <select id="findOneById" resultType="AuctionUserInfo">
@@ -24,16 +24,16 @@
         where user_id = #{model.userId}
     </update>
     
-    <insert id="addAuctionUserByModel" useGeneratedKeys="true">
+    <insert id="addAuctionUserByModel" useGeneratedKeys="true" keyProperty="userId">
         insert into auction_user (user_account, user_password, is_shop)
         value (#{model.userAccount}, #{model.userPassword}, #{model.isShop})
     </insert>
 
     <insert id="addAuctionUserInfoByModel">
         insert into auction_user_info (user_id, user_name, user_credential_type,
-        user_credential_num, user_sex, user_birth, user_account_year)
+        user_credential_num, user_sex, user_birth, user_age, user_registered_date)
         value (#{model.userId}, #{model.userName}, #{model.userCredentialType},
-        #{model.userCredentialNum}, #{model.userSex}, #{model.userBirth})
+        #{model.userCredentialNum}, #{model.userSex}, #{model.userBirth}, #{model.userAge}, #{model.userRegisteredDate})
     </insert>
 
 </mapper>

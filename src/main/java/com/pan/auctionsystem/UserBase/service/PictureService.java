@@ -9,7 +9,7 @@ import java.io.*;
 @Service("pictureService")
 public class PictureService {
 
-    private String filePath = "C:\\Users\\Administrator\\Desktop\\test\\";
+    private String filePath = "C:\\Users\\Cammer\\Desktop\\img";
 
     public void service(MultipartFile file){
         if (file.isEmpty()) {
@@ -33,7 +33,7 @@ public class PictureService {
     public boolean service (String fileName, HttpServletResponse response){
 
         //输出文件的完整路径
-        File targetFile = new File(filePath + fileName);
+        File targetFile = new File(filePath + "\\" + fileName);
 
         if (!targetFile.exists()) return false;
         response.setContentType("image/png");
