@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>已订阅</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <script src="../static/dist/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/visitorRegister.css">
-    <link rel="stylesheet" href="../static/css/identityInfo.css">
-    <script src="../static/js/visitorRegister.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/visitorRegister.css">
+    <link rel="stylesheet" href="/css/identityInfo.css">
+    <script src="/js/visitorRegister.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
 
 </head>
@@ -28,46 +28,44 @@
     </div>
     <div>
         <div class="col-md-5  col-md-offset-1">
-                <div class="container-fluid" id="person-msg-box">
-                        <div class="panel-box" style="height: 300px; width:400px">
-                            <div>
-                                <p class="form-title">Item Information --正在拍卖</p>
-                            </div>
-                            <div> <table class="table table-responsive table-striped person-table">
-                                <tr>
-                                    <td>商家:</td`>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        名称:
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
-                                    <td rowspan="2" ><img src="../static/images/u635.jpg" style="height:90    px; width:80px"></td>
-                                </tr>
-                                <tr>
-                                    <td>开拍时间~结束时间:</td>
-                                    <td>C66666</td>
-                    
-                                </tr>
-                                <tr>
-                                    <td>起拍价格:</td>
-                                    <td>100</td>
-                                </tr>
-                            </table></div>
-                            <div class=" btn-box text-center">
-                                    <button class="btn btn-default btn-primary">Detail</button>
-                                    <button class="btn btn-default btn-primary">Auctioning</button>
-                                </div>
-                        </div>
-                    
+            <div class="container-fluid" id="item-msg-box" style="width: 1550px; height: 100%">
+                <div class="panel-box" style="height: 300px; width:400px; float: left; margin: 15px" th:each="item:${itemList}">
+                    <div>
+                        <p class="form-title">Item Information</p>
                     </div>
+                    <div> <table class="table table-responsive table-striped person-table">
+                        <tr>
+                            <td>商家:</td>
+                            <td th:text="${item.shopName}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>名称:</td>
+                            <td th:text="${item.itemName}"></td>
+                            <td rowspan="2" ><img th:src="@{getPicture(fileName=${item.itemPicture})}" style="height:90px; width:80px"></td>
+                        </tr>
+                        <tr>
+                            <td>开拍时间~结束时间:</td>
+                            <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')} + '~' +
+                                ${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
+
+                        </tr>
+                        <tr>
+                            <td>起拍价格:</td>
+                            <td th:text="${item.itemStartingPrice}"></td>
+                        </tr>
+                    </table></div>
+                    <div class=" btn-box text-center">
+                        <a class="btn btn-default btn-primary" th:href="@{detail(itemId=${item.itemId})}">Detail</a>
+                        <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
+                           th:href="@{detail(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+</div>
     <div>
         <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
     </div>   

@@ -98,7 +98,7 @@
                             <tr>
                                 <td>开拍时间~结束时间:</td>
                                 <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')} + '~' +
-                                ${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
+                                ${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}" th:if="${item.itemStartDate != null}"></td>
 
                             </tr>
                             <tr>
@@ -107,9 +107,9 @@
                             </tr>
                         </table></div>
                         <div class=" btn-box text-center">
-                            <a class="btn btn-default btn-primary" th:href="@{/order/details(orderId=${item.itemId})}">Detail</a>
+                            <a class="btn btn-default btn-primary" th:href="@{detail(itemId=${item.itemId})}">Detail</a>
                             <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
-                               th:href="@{/order/details(orderId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
+                               th:href="@{detail(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
                         </div>
                     </div>
 

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Address List</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <script src="../static/dist/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/visitorRegister.css">
-    <link rel="stylesheet" href="../static/css/identityInfo.css">
-    <script src="../static/js/visitorRegister.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/visitorRegister.css">
+    <link rel="stylesheet" href="/css/identityInfo.css">
+    <script src="/js/visitorRegister.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
 
 </head>
@@ -31,15 +31,21 @@
                 <th style="width:70%">Address</th>
                 <th>operation</th>
             </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
+            <tr th:each="address:${addressList}">
+                <td th:text="${address.userAddress}"></td>
+                <td><a th:href="@{deleteAddress(modelId=${address.userAddressId})}">delete</a>
+                    <a th:href="@{toUpdateAddress(modelId=${address.userAddressId})}" style="margin-left: 20px;">detail</a></td>
             </tr>
         </table>
     </div>
+    <div class=" btn-box text-center">
+        <a class="btn btn-default btn-primary" th:href="@{toAddAddress}">ToAdd</a>
+    </div>
+</div>
     <div>
         <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
     </div>
+
 </div>
 </body>
 </html>

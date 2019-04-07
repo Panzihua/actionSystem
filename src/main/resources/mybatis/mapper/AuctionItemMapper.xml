@@ -5,7 +5,7 @@
     <select id="selectAll" useCache="true" resultType="AuctionItem">
         select item_id, item_name, item_from, item_shelf_date,
         item_start_date, item_end_date, item_shop_id, user_name as shopName,
-        item_starting_price, item_increase_pirce, item_picture
+        item_starting_price, item_increase_price, item_picture
         from auction_item, auction_user, auction_user_info
         where auction_user.user_id = item_shop_id and auction_user.user_id = auction_user_info.user_id and item_status = 1;
     </select>
@@ -13,7 +13,7 @@
     <select id="selectByCondition" resultType="AuctionItem">
         select item_id, item_name, item_from, item_shelf_date,
         item_start_date, item_end_date, item_shop_id, user_name as shopName,
-        item_starting_price, item_increase_pirce, item_picture
+        item_starting_price, item_increase_price, item_picture
         from auction_item, auction_user, auction_user_info
         where auction_user.user_id = item_shop_id and auction_user.user_id = auction_user_info.user_id and item_status = 1
         <if test="model.itemName != null">
@@ -33,17 +33,17 @@
     <select id="findOneById" resultType="AuctionItem">
         select item_id, item_name, item_from, item_shelf_date,
         item_start_date, item_end_date, item_shop_id, user_name as shopName,
-        item_starting_price, item_increase_pirce, item_picture
-        from auction_item, auction_user
-        where user_id = item_shop_id and item_id = #{modelId} and item_status = 1
+        item_starting_price, item_increase_price, item_picture
+        from auction_item, auction_user, auction_user_info
+        where auction_user.user_id = item_shop_id and item_id = #{modelId} and item_status = 1 and auction_user.user_id = auction_user_info.user_id
     </select>
 
     <update id="updateOneByModel">
       update auction_item set
       item_name = #{model.itemName},
-      item_from = #{moddel.itemFrom},
+      item_from = #{model.itemFrom},
       item_starting_price = #{model.itemStartingPrice},
-      item_increase_pirce = #{model.itemIncreasePrice},
+      item_increase_price = #{model.itemIncreasePrice},
       item_picture = #{model.itemPicture}
       where item_id = #{model.itemId}
     </update>
@@ -54,8 +54,8 @@
     
     <insert id="addOneByModel" useGeneratedKeys="true">
         insert into auction_item (item_name, item_from, item_shelf_date,
-        item_shop_id, item_starting_price, item_increase_pirce, item_picture)
-        value (#{model.itemName}, #{model.itemFrom}, #{itemShelfDate},
+        item_shop_id, item_starting_price, item_increase_price, item_picture)
+        value (#{model.itemName}, #{model.itemFrom}, #{model.itemShelfDate},
         #{model.itemShopId}, #{model.itemStartingPrice}, #{model.itemIncreasePrice}, #{model.itemPicture})
     </insert>
 
@@ -67,18 +67,18 @@
     </update>
 
     <select id="selectAllSubscribeItem" resultType="AuctionItem">
-        select item_id, item_name, item_from, item_shelf_date, item_start_date, item_end_date,
-        item_shop_id, user_name as shopName, item_starting_price, item_increase_pirce, item_picture
-        from auction_item as item, auction_user as shop, auction_user_subscript as sb
-        where item.item_shop_id = shop.user_id and sb.user_id = #{userId} and sb.item_id = item.item_id
+        select item.item_id, item_name, item_from, item_shelf_date, item_start_date, item_end_date,
+        item_shop_id, auction_user_info.user_name as shopName, item_starting_price, item_increase_price, item_picture
+        from auction_item as item, auction_user as shop, auction_user_subscript as sb, auction_user_info
+        where item.item_shop_id = shop.user_id and sb.user_id = #{userId} and sb.item_id = item.item_id and shop.user_id = auction_user_info.user_id
     </select>
     
     <select id="selectAllByShopId" resultType="AuctionItem">
         select item_id, item_name, item_from, item_shelf_date,
         item_start_date, item_end_date, item_shop_id, user_name as shopName,
-        item_starting_price, item_increase_pirce, item_picture
-        from auction_item, auction_user
-        where user_id = item_shop_id and item_status = 1 and item_shop_id = #{shopId}
+        item_starting_price, item_increase_price, item_picture
+        from auction_item, auction_user_info
+        where auction_user_info.user_id = item_shop_id and item_status = 1 and item_shop_id = #{shopId}
     </select>
 
     <select id="wasSubscribed" resultType="Integer">

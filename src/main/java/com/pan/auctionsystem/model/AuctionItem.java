@@ -18,4 +18,5 @@ public class AuctionItem {
 
     private int wasSubscribe;
     boolean auctioning;
+
 }

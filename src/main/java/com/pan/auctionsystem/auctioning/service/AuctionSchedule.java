@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,10 +27,8 @@ public class AuctionSchedule {
     @Resource(name = "itemOrderDao")
     private ItemOrderDao itemOrderDao;
 
-    @Autowired
-    @Qualifier("stringRedisTemplate")
-    @Setter @Getter
-    private RedisTemplate template;
+    @Resource(name = "stringRedisTemplate")
+    private StringRedisTemplate template;
 
 
 //    @Scheduled(fixedRate = 3600000)

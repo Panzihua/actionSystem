@@ -3,6 +3,7 @@ package com.pan.auctionsystem.UserBase.service;
 import com.pan.auctionsystem.domin.AuctionItemDao;
 import com.pan.auctionsystem.model.AuctionItem;
 import com.pan.auctionsystem.util.myInterface.service.CRUDService;
+import com.pan.auctionsystem.util.translate.TimeTranslation;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,19 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
     @Getter @Setter
     private RedisTemplate template;
 
+    @Autowired
+    private TimeTranslation translation;
+
     @Override
     public List<AuctionItem> selectAll() {
         List<AuctionItem> list = dao.selectAll();
         Long now = new Date().getTime();
 
         for (AuctionItem item : list){
-            if (item.getItemStartDate() > now || item.getItemEndDate() < now) item.setAuctioning(false);
-            else item.setAuctioning(true);
+            item.setAuctioning(false);
+
+            if (item.getItemStartDate() != null)
+                if (item.getItemStartDate() <= now && item.getItemEndDate() >= now) item.setAuctioning(true);
         }
 
         return list;
@@ -51,6 +57,14 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
         if (subscribe == null) result.setWasSubscribe(0);
         else result.setWasSubscribe(1);
 
+        Long now = new Date().getTime();
+
+        result.setAuctioning(false);
+
+        if (result.getItemStartDate() != null && result.getItemEndDate() !=null) {
+            if (result.getItemStartDate() <= now && result.getItemEndDate() >= now) result.setAuctioning(true);
+        }
+
         return result;
     }
 
@@ -66,17 +80,30 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
 
     @Override
     public int addOneByModel(AuctionItem model) {
-        return addOneByModel(model);
+        model.setItemShelfDate(new Date().getTime());
+        return dao.addOneByModel(model);
     }
 
     public List<AuctionItem> selectAllByShopId(String ip){
         int shopId = Integer.parseInt(template.opsForValue().get(ip).toString());
 
-        return dao.selectAllByShopId(shopId);
+        List<AuctionItem> list = dao.selectAllByShopId(shopId);
+        Long now = new Date().getTime();
+
+        for (AuctionItem item : list){
+            item.setAuctioning(false);
+
+            if (item.getItemStartDate() != null)
+                if (item.getItemStartDate() <= now && item.getItemEndDate() >= now) item.setAuctioning(true);
+        }
+        return list;
     }
 
-    public void setDate(int itemId, Long startTime, Long endTime){
-        dao.setDateForItem(itemId, startTime, endTime);
+    public void setDate(int itemId, String startTime, String endTime){
+        startTime = startTime.replace("T", " ");
+        endTime = endTime.replace("T", " ");
+
+        dao.setDateForItem(itemId, translation.StringDateTime2Long(startTime), translation.StringDateTime2Long(endTime));
     }
 
 }

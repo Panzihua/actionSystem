@@ -34,4 +34,8 @@ public class AddressService{
         model.setUserId(Integer.parseInt(template.opsForValue().get(ip)));
         return addressDao.addOneByModel(model);
     }
+
+    public AuctionUserAddress findOneById(int modelId){
+        return addressDao.findOneById(modelId);
+    }
 }

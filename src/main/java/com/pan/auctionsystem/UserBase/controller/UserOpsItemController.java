@@ -2,8 +2,10 @@ package com.pan.auctionsystem.UserBase.controller;
 
 import com.pan.auctionsystem.UserBase.service.AuctionItemService;
 import com.pan.auctionsystem.UserBase.service.SubscribeService;
+import com.pan.auctionsystem.UserBase.service.UserService;
 import com.pan.auctionsystem.model.AuctionItem;
 import com.pan.auctionsystem.model.AuctionSubscribeModel;
+import com.pan.auctionsystem.model.AuctionUserInfo;
 import com.pan.auctionsystem.util.myInterface.controller.CRUDController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class UserOpsItemController implements CRUDController<AuctionItem> {
     @Resource(name = "subscribeService")
     private SubscribeService subscribeService;
 
+    @Resource(name = "userService")
+    private UserService userService;
+
     @GetMapping("/getAllItem")
     public String selectAll(Model model, HttpServletRequest request) {
         model.addAttribute("itemList", auctionItemService.selectAll());
@@ -39,28 +44,45 @@ public class UserOpsItemController implements CRUDController<AuctionItem> {
         return auctionItemService.selectByCondition(condition);
     }
 
-    //click进去查看详情
+    @GetMapping("/detail")
     @Override
-    public String findOneById(Model model, int itemId, HttpServletRequest request) {
-        model.addAttribute("auctionItem", auctionItemService.findOneById(itemId, request.getRemoteAddr()));
+    public String findOneById(Model model, @RequestParam int itemId, HttpServletRequest request) {
+        model.addAttribute("item", auctionItemService.findOneById(itemId, request.getRemoteAddr()));
 
-        return "详情页面";
+        return "itemDetail";
     }
 
-    //订阅
-    public String subscribeItem(HttpServletRequest request ,int itemId){
+    @GetMapping("/subscribe")
+    @ResponseBody
+    public boolean subscribeItem(@RequestParam int itemId, HttpServletRequest request){
         AuctionSubscribeModel model = new AuctionSubscribeModel();
         model.setItemId(itemId);
 
         subscribeService.addOneByModel(model, request.getRemoteAddr());
-        return "消息";
+        return true;
     }
 
-    //取消订阅
-    public String cancelSubscribe(HttpServletRequest request, int itemId){
+    @GetMapping("/cancelSubscribe")
+    @ResponseBody
+    public boolean cancelSubscribe(@RequestParam int itemId, HttpServletRequest request){
         subscribeService.deleteOneByUserIdNItemId(request.getRemoteAddr(), itemId);
 
-        return "消息";
+        return true;
+    }
+
+    @PostMapping("/updateUserInfo")
+    @ResponseBody
+    public Boolean updateUserInfo(@RequestBody AuctionUserInfo model, HttpServletRequest request){
+        userService.updateUserInfoByModel(model, request.getRemoteAddr());
+
+        return true;
+    }
+
+    @GetMapping("/toUpdateUserInfo")
+    public String toUpdateUserInfo(HttpServletRequest request, Model model){
+        model.addAttribute("userInfo", userService.findOneById(request.getRemoteAddr()));
+
+        return "UserInfo";
     }
 
     @Override

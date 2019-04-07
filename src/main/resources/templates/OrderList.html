@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Order List</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <script src="../static/dist/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/visitorRegister.css">
-    <link rel="stylesheet" href="../static/css/identityInfo.css">
-    <script src="../static/js/visitorRegister.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/visitorRegister.css">
+    <link rel="stylesheet" href="/css/identityInfo.css">
+    <script src="/js/visitorRegister.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
 
 </head>
@@ -35,50 +35,17 @@
                 <th>Address</th>
                 <th>OrderStatus</th>
             </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
+            <tr th:each="order : ${orderList}">
+                <td th:text="${order.orderId}">V-0322</td>
+                <td th:text="${order.itemName}">V-Visitor</td>
+                <td th:text="${order.shopName}">Kate Lee</td>
+                <td th:text="${#dates.format(order.orderCreateTime, 'yyyy-M-d H:m:s')}">1000500(1)</td>
+                <td th:text="${order.itemPrice}">Macau ID CARD</td>
+                <td th:if="${order.address == null || order.address.isEmpty()}">
+                    <a th:href="@{toSetAddress(orderId=${order.orderId})}">setAddress</a></td>
+                <td th:if="${order.address != null && !order.address.isEmpty()}" th:text="${order.address}"></td>
+                <td th:if="${order.orderStatus == 1}">完成</td>
+                <td th:if="${order.orderStatus == 0}">未完成</td>
                 <!-- <td>005623</td>
                 <td>Man Toc</td>
                 <td><a href="#">Detail</a></td> -->
@@ -86,7 +53,7 @@
         </table>
     </div>
     <div>
-        <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/3 <a id="nextButton">Next</a></span>
+        <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
     </div>
 </div>
 </body>

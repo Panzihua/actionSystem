@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <script src="../static/dist/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
+    <script src="/js/UserInfo.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/case1.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/case1.css">
+    <link rel="stylesheet" href="/css/index.css">
     <title>UserInfo</title>
 </head>
 <body>
@@ -27,60 +28,59 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="col-md-12">
-                            <form action="" class="form-horizontal">
+                        <div class="col-md-12 form-horizontal">
                                 <div class="form-group">
-                                    <label for="Sex" class="col-sm-5 control-label">UserName:</label>
+                                    <label for="userName" class="col-sm-5 control-label">UserName:</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control" id="Sex">
-                                            <option>F</option>
-                                            <option>M</option>
-                                        </select>
+                                        <input type="text" class="form-control" id="userName" th:value="${userInfo.userName}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Sex" class="col-sm-5 control-label">Sex:</label>
+                                    <label for="userSex" class="col-sm-5 control-label">Sex:</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control" id="Sex">
-                                            <option>F</option>
-                                            <option>M</option>
+                                        <select class="form-control" id="userSex" th:if="${userInfo.userSex == 1}">
+                                            <option value="1">男</option>
+                                            <option value="0">女</option>
+                                        </select>
+                                        <select class="form-control" id="userSex" th:if="${userInfo.userSex == 0}">
+                                            <option value="0">女</option>
+                                            <option value="1">男</option>
                                         </select>
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-md-12">
-                            <form action="" class="form-horizontal">
+                        <div class="col-md-12 form-horizontal">
                                 <div class="form-group">
                                     <label for="CredentialType" class="col-sm-5 control-label">Credential Type</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control" id="CredentialType">
-                                            <option>F</option>
-                                            <option>M</option>
+                                        <select class="form-control" id="credentialType" th:if="${userInfo.userCredentialType == 1}">
+                                            <option value="1">大陆身份证</option>
+                                            <option value="2">港澳通行证</option>
+                                        </select>
+                                        <select class="form-control" id="credentialType" th:if="${userInfo.userCredentialType == 2}">
+                                            <option value="1">大陆身份证</option>
+                                            <option value="2">港澳通行证</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Department" class="col-sm-5 control-label">Birth:</label>
+                                    <label for="birth" class="col-sm-5 control-label">Birth:</label>
                                     <div class="col-sm-7">
-                                        <input type="date" class="form-control" id="Department">
+                                        <input type="date" class="form-control" id="birth" th:value="${#dates.format(userInfo.userBirth, 'yyyy-MM-dd')}">
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-md-12">
-                            <form action="" class="form-horizontal">
+                        <div class="col-md-12 form-horizontal">
                                 <div class="form-group">
-                                    <label for="Department" class="col-sm-5 control-label">CredentialType Num:</label>
+                                    <label for="credentialNum" class="col-sm-5 control-label">CredentialType Num:</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="Department">
+                                        <input type="text" class="form-control" id="credentialNum" th:value="${userInfo.userCredentialNum}">
                                     </div>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
             <div class="container">
                 <div class="col-md-12 text-center">
                     <div class="btn-group btn-box">
-                        <button id="case1-chein-btn">Update</button>
+                        <button class="btn btn-default" id="updateButton">Update</button>
                     </div>
                 </div>
             </div>

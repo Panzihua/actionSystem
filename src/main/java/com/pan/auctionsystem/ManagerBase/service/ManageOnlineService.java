@@ -36,7 +36,7 @@ public class ManageOnlineService {
     public void removeOnlineUser(String userAccount){
         String ip = template.opsForValue().get(userAccount);
 
-        template.delete("ip");
+        template.delete(ip);
         template.delete(userAccount);
     }
 }

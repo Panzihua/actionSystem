@@ -20,7 +20,8 @@
         user_credential_type = #{model.userCredentialType},
         user_credential_num = #{model.userCredentialNum},
         user_sex = #{model.userSex},
-        user_birth = #{model.userBirth} 
+        user_birth = #{model.userBirth},
+        user_age = #{model.userAge}
         where user_id = #{model.userId}
     </update>
     

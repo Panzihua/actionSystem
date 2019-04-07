@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Item Information</title>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
+    <script src="/js/ItemDetail.js"></script>
     <!--[if lt IE10]>
     <script src="/dist/html5shiv.js"></script>
     <script src="/dist/response.min.js"></script>
@@ -14,6 +18,7 @@
 </head>
 <body>
 <div class="container-fluid" id="person-msg-box">
+    <span id="itemId" style="display: none" th:text="${item.itemId}"></span>
     <div class="panel-box">
         <div>
             <p class="form-title">Item Information</p>
@@ -21,39 +26,36 @@
         <div> <table class="table table-responsive table-striped person-table">
             <tr>
                 <th>Item Name:</th>
-                <th>aaa</th>
+                <th th:text="${item.itemName}"></th>
                 <th></th>
             </tr>
             <tr>
-                <td>
-                    来源地:
-                </td>
-                <td>
-                    Hong Kong
-                </td>
-                <td rowspan="5" ><img src="/images/u96.jpg" alt=""></td>
+                <td>来源地:</td>
+                <td th:text="${item.itemFrom}"></td>
+                <td rowspan="5" ><img th:src="@{getPicture(fileName=${item.itemPicture})}"
+                                      style="width: 144px; width: 144px"></td>
             </tr>
             <tr>
                 <td>上架日期:</td>
-                <td>2019.3.8</td>
+                <td th:text="${#dates.format(item.itemShelfDate, 'yyyy-M-d H:m:s')}"></td>
 
             </tr>
             <tr>
                 <td>开始拍卖时间:</td>
-                <td></td>
+                <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')}"></td>
             </tr>
             <tr>
                 <td>结束拍卖时间:</td>
-                <td>SAN, Chi Nan</td>
+                <td th:text="${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
             </tr>
             <tr>
                 <td>起拍价:</td>
-                <td>50</td>
+                <td th:text="${item.itemStartingPrice}"></td>
                 <td></td>
             </tr>
             <tr>
                 <td>每次加价不少于:</td>
-                <td>5</td>
+                <td th:text="${item.itemIncreasePrice}"></td>
                 <td></td>
             </tr>
             <tr style="height: 36px">
@@ -63,9 +65,10 @@
             </tr>
         </table></div>
         <div class=" btn-box text-center">
-                   <button class="btn btn-default btn-primary">订阅</button>
-                   <button class="btn  btn-default btn-danger" >Retry</button>
-                   <button class="btn btn-primary btn-default-pri">Back</button>
+                   <a class="btn btn-default btn-primary" th:if="${item.wasSubscribe == 0}" id="subscribeButton">订阅</a>
+                   <a class="btn btn-default btn-primary" th:if="${item.wasSubscribe == 1}" id="subscribeButton">取消订阅</a>
+                   <a class="btn btn-default btn-danger" th:if="${item.auctioning}">正在拍卖</a>
+                   <a onclick="javascript:history.go(-1);">Back</a>
                </div>
     </div>
 

@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 public class TimeTranslation {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public Long StringDate2Long(String stringDate){
         return StringDate2Date(stringDate).getTime();
@@ -37,6 +37,23 @@ public class TimeTranslation {
         }
 
         return date;
+    }
+
+    public Date StringDateTime2Date(String str){
+        Date date = null;
+        try {
+            date = dateTimeFormat.parse(str);
+
+            return date;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public Long StringDateTime2Long(String stringDate){
+        return StringDateTime2Date(stringDate).getTime();
     }
 
 }

@@ -22,26 +22,26 @@
         <div>
             <p class="form-title">Item Information</p>
         </div>
-        <form action="/auctionSystem/updateShopItem" method="post" name="model">
+        <form action="/auctionSystem/addItem" method="post" name="model">
         <div> <table class="table table-responsive table-striped person-table">
-            <input  type="text" name="itemId" th:value="${item.itemId}" style="display: none"/>
+            <input type="text" th:value="${shopId}" style="display: none" name="itemShopId"/>
             <tr>
                 <td>Item Name:</td>
-                <td><input type="text" class="form-control" th:value="${item.itemName}" name="itemName"></td>
+                <td><input type="text" class="form-control" name="itemName"></td>
                 <td></td>
             </tr>
             <tr>
                 <td>来源地:</td>
-                <td><input type="text" class="form-control" th:value="${item.itemFrom}" name="itemFrom"></td>
-                <td rowspan="3" ><img th:src="@{getPicture(fileName=${item.itemPicture})}" id="picture"></td>
+                <td><input type="text" class="form-control" name="itemFrom"></td>
+                <td rowspan="3" ><img src="" id="picture" style="width: 144px; width: 144px"></td>
             </tr>
             <tr>
                 <td>起拍价:</td>
-                <td><input type="number" class="form-control" th:value="${item.itemStartingPrice}" name="itemStartingPrice"></td>
+                <td><input type="number" class="form-control" name="itemStartingPrice"></td>
             </tr>
             <tr>
                 <td>每次加价不少于:</td>
-                <td><input type="number" class="form-control" th:value="${item.itemIncreasePrice}" name="itemIncreasePrice"></td>
+                <td><input type="number" class="form-control" name="itemIncreasePrice"></td>
             </tr>
             <tr>
                 <td>上传图片:</td>
@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td>当前图片:</td>
-                <td><input type="text" class="form-control" th:value="${item.itemPicture}" readonly="readonly" id="pictureText" name="itemPicture" /></td>
+                <td><input type="text" class="form-control" readonly="readonly" id="pictureText" name="itemPicture" /></td>
             </tr>
             <tr style="height: 36px">
                 <td></td>
@@ -58,9 +58,10 @@
             </tr>
         </table></div>
         <div class=" btn-box text-center">
-            <button class="btn btn-default btn-primary" type="submit">Update</button>
+            <button class="btn btn-default btn-primary" type="submit">Save</button>
             <a onclick="javascript:history.go(-1);">Back</a>
         </div>
+        </form>
     </div>
 
 </div>

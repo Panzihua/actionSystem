@@ -30,9 +30,8 @@ public class ActionsystemApplicationTests {
 
     @Test
     public void contextLoads() {
-        Date date = translation.StringDate2Date("2019-12-10");
 
-        System.out.println(date.getTime());
+        System.out.println(new Date().getTime());
     }
 
 }

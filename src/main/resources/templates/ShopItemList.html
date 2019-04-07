@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Item List</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <script src="../static/dist/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap.js"></script>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/visitorRegister.css">
-    <link rel="stylesheet" href="../static/css/identityInfo.css">
-    <script src="../static/js/visitorRegister.js"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/visitorRegister.css">
+    <link rel="stylesheet" href="/css/identityInfo.css">
+    <script src="/js/visitorRegister.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
 
 </head>
@@ -37,55 +37,24 @@
                 <th>每次加价不少于</th>
                 <th>operation</th>
             </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
-            </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
-                <td>Macau ID CARD</td>
-                <td>HongWei</td>
-                <td>Meeting</td>
-                <!-- <td>005623</td>
-                <td>Man Toc</td>
-                <td><a href="#">Detail</a></td> -->
+            <tr th:each="item : ${itemList}">
+                <td th:text="${item.itemName}"></td>
+                <td th:text="${item.itemFrom}"></td>
+                <td th:text="${#dates.format(item.itemShelfDate, 'yyyy-M-d')}"></td>
+                <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')}"></td>
+                <td th:text="${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
+                <td th:text="${item.itemStartingPrice}"></td>
+                <td th:text="${item.itemIncreasePrice}"></td>
+                <td><a th:href="@{shopItemDetail(itemId=${item.itemId})}" th:if="${!item.auctioning}">Detail</a>
+                    <a th:href="@{toSetDate(itemId=${item.itemId})}" th:if="${item.itemStartDate == null}" style="margin-left: 15px">SetDate</a>
+                    <a th:href="@{deleteShopItem(itemId=${item.itemId})}" style="margin-left: 15px"
+                    th:if="${item.itemStartDate == null}">Delete</a>
+                <span th:if="${item.auctioning}">正在拍卖</span></td>
             </tr>
         </table>
+    </div>
+    <div class=" btn-box text-center">
+        <a class="btn btn-default btn-primary" href="/auctionSystem/toAddItem">Add New</a>
     </div>
     <div>
         <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
