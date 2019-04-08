@@ -24,19 +24,19 @@ public class SubscribeService{
     private RedisTemplate template;
 
     public int deleteOneByUserIdNItemId(String ip, int itemId) {
-        return dao.deleteOneByUserIdNItemId(Integer.parseInt(template.opsForValue().get(ip).toString()), itemId);
+        return dao.deleteOneByUserIdNItemId(Integer.parseInt(template.opsForValue().get("ip_" + ip).toString()), itemId);
     }
 
 
     public int addOneByModel(AuctionSubscribeModel model, String ip) {
-        int userId = Integer.parseInt(template.opsForValue().get(ip).toString());
+        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip).toString());
 
         model.setUserId(userId);
         return dao.addOneByModel(model);
     }
 
     public List<AuctionItem> selectSubscribeItem(String ip){
-        List<AuctionItem> list = itemDao.selectAllSubscribeItem(Integer.parseInt(template.opsForValue().get(ip).toString()));
+        List<AuctionItem> list = itemDao.selectAllSubscribeItem(Integer.parseInt(template.opsForValue().get("ip_" + ip).toString()));
         Long now = new Date().getTime();
 
         for (AuctionItem item : list){

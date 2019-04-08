@@ -10,8 +10,8 @@ public class AuctionItemForRedis {
     Long itemShelfDate;
     Long itemStartDate;
     Long itemEndDate;
-    double itemStartingPrice;
-    double itemIncreasePrice;
+    int itemStartingPrice;
+    int itemIncreasePrice;
     String itemPicture;
 
     int itemShopId;

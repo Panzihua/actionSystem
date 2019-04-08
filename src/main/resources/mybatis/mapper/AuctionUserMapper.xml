@@ -37,4 +37,10 @@
         #{model.userCredentialNum}, #{model.userSex}, #{model.userBirth}, #{model.userAge}, #{model.userRegisteredDate})
     </insert>
 
+        <select id="findAccountById" resultType="AuctionUser">
+        select user_account, user_name
+        from auction_user, auction_user_info
+        where auction_user.user_id = #{userId} and auction_user.user_id = auction_user_info.user_id
+    </select>
+
 </mapper>

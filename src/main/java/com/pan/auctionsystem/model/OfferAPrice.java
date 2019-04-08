@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class OfferAPrice {
-    private double price;
+    private int price;
     private String userName;
     private String userAccount;
     private int itemId;

@@ -10,4 +10,5 @@ import java.util.List;
 public interface AuctionItemForRedisDao {
     public List selectItemByCondition(AuctionItemForRedis auctionItemForRedis);
     public List<AuctionItemForRedis> selectItemDateTime2Redis(@Param("startTime")Long startTime, @Param("endTime")Long endTime);
+    public List<AuctionItemForRedis> selectItemDateTime2RedisForTest(@Param("endTime") Long endTime);
 }

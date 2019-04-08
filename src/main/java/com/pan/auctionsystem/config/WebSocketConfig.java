@@ -14,13 +14,13 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/actionSystem-action-webSocket").withSockJS();
+        registry.addEndpoint("/auctionSystem/actionSystem-action-webSocket").withSockJS();
 
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/auctioning");
-        registry.setApplicationDestinationPrefixes("/auctioningOp");
+        registry.enableSimpleBroker("/auctionSystem/auctioning");
+        registry.setApplicationDestinationPrefixes("/auctionSystem/auctioningOp");
     }
 }

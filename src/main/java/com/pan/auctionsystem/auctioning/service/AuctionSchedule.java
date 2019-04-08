@@ -31,19 +31,22 @@ public class AuctionSchedule {
     private StringRedisTemplate template;
 
 
-//    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 3600000)
     public void putActionScheduleInNextHour() {
         Long now = new Date().getTime();
         Long future = now  + 3600000;
         //调试特殊参数
-        List<AuctionItemForRedis> list = auctionItemForRedisDao.selectItemDateTime2Redis(Long.valueOf(1), Long.valueOf(100));
+//        List<AuctionItemForRedis> list = auctionItemForRedisDao.selectItemDateTime2Redis(now, future);
+        List<AuctionItemForRedis> list = auctionItemForRedisDao.selectItemDateTime2RedisForTest(future);
 
         for (AuctionItemForRedis item : list){
             BoundHashOperations<String, String, String> hmOp = template.boundHashOps("item_" + item.getItemId() + "_" + item.getItemName());
             hmOp.put("startTime", item.getItemStartDate().toString());
             hmOp.put("endTime", item.getItemEndDate().toString());
             hmOp.put("itemId", String.valueOf(item.getItemId()));
+            System.out.println(String.valueOf(item.getItemStartingPrice()));
             hmOp.put("itemPrice", String.valueOf(item.getItemStartingPrice()));
+            System.out.println(hmOp.get("itemPrice"));
 
             //调试用
             String aaa = hmOp.get("startTime");

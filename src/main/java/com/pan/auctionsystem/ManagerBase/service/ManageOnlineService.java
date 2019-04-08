@@ -16,16 +16,14 @@ public class ManageOnlineService {
     private StringRedisTemplate template;
 
     public List selectAllUser(){
-        Set<String> keySet = template.keys("user_*");
+        Set<String> keySet = template.keys("ip_*");
         List<OnlineUserModel> list = new ArrayList<>();
 
         for (String key : keySet){
             OnlineUserModel model = new OnlineUserModel();
 
-            model.setUserAccount(key);
-            String ip = template.opsForValue().get(key);
-            model.setIp(ip);
-            model.setUserId(template.opsForValue().get(ip));
+            model.setIp(key.substring(3));
+            model.setUserId(template.opsForValue().get(key));
 
             list.add(model);
         }
@@ -33,10 +31,7 @@ public class ManageOnlineService {
         return list;
     }
 
-    public void removeOnlineUser(String userAccount){
-        String ip = template.opsForValue().get(userAccount);
-
-        template.delete(ip);
-        template.delete(userAccount);
+    public void removeOnlineUser(String ip){
+        template.delete("ip_" + ip);
     }
 }

@@ -22,7 +22,7 @@ public class OrderAddressService {
     }
 
     public List<ItemOrder> selectAll(String ip){
-        int userId = Integer.parseInt(template.opsForValue().get(ip));
+        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip));
 
         return itemOrderDao.selectAll(userId);
     }

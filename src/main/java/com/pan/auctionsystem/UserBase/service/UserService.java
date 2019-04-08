@@ -43,7 +43,7 @@ public class UserService {
     }
 
     public void putUserInRedis(AuctionUser user, String ip){
-        template.opsForValue().set(ip, String.valueOf(user.getUserId()));
+        template.opsForValue().set("ip_" + ip, String.valueOf(user.getUserId()));
 //        template.expire(ip, 1, TimeUnit.HOURS);
     }
 
@@ -61,7 +61,7 @@ public class UserService {
 
     public int updateUserInfoByModel(AuctionUserInfo userInfo, String ip){
         //取得userId
-        int userId = Integer.parseInt(template.opsForValue().get(ip).toString());
+        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip).toString());
         userInfo.setUserId(userId);
 
         userInfo.setUserBirth(translation.StringDate2Long(userInfo.getUserBirthString()));
@@ -71,7 +71,7 @@ public class UserService {
     }
 
     public AuctionUserInfo findOneById(String ip){
-        int userId = Integer.parseInt(template.opsForValue().get(ip).toString());
+        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip).toString());
 
         return dao.findOneById(userId);
     }

@@ -21,9 +21,7 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
     @Resource(name = "auctionItemDao")
     private AuctionItemDao dao;
 
-    @Autowired
-    @Qualifier("stringRedisTemplate")
-    @Getter @Setter
+    @Resource(name = "stringRedisTemplate")
     private RedisTemplate template;
 
     @Autowired
@@ -37,8 +35,12 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
         for (AuctionItem item : list){
             item.setAuctioning(false);
 
-            if (item.getItemStartDate() != null)
-                if (item.getItemStartDate() <= now && item.getItemEndDate() >= now) item.setAuctioning(true);
+            if (item.getItemStartDate() != null) {
+                System.out.println(item.getItemStartDate() <= now);
+                System.out.println(item.getItemEndDate() >= now);
+                if (item.getItemStartDate() <= now && item.getItemEndDate() >= now)
+                    item.setAuctioning(true);
+            }
         }
 
         return list;
@@ -52,7 +54,7 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
     @Override
     public AuctionItem findOneById(int id, String ip) {
         AuctionItem result = dao.findOneById(id);
-        Integer subscribe = dao.wasSubscribed(Integer.parseInt(template.opsForValue().get(ip).toString()), id);
+        Integer subscribe = dao.wasSubscribed(Integer.parseInt(template.opsForValue().get("ip_" + ip).toString()), id);
 
         if (subscribe == null) result.setWasSubscribe(0);
         else result.setWasSubscribe(1);
@@ -85,7 +87,7 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
     }
 
     public List<AuctionItem> selectAllByShopId(String ip){
-        int shopId = Integer.parseInt(template.opsForValue().get(ip).toString());
+        int shopId = Integer.parseInt(template.opsForValue().get("ip_" + ip).toString());
 
         List<AuctionItem> list = dao.selectAllByShopId(shopId);
         Long now = new Date().getTime();

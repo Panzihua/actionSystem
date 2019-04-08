@@ -109,7 +109,7 @@
                         <div class=" btn-box text-center">
                             <a class="btn btn-default btn-primary" th:href="@{detail(itemId=${item.itemId})}">Detail</a>
                             <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
-                               th:href="@{detail(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
+                               th:href="@{toAuctioning(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
                         </div>
                     </div>
 

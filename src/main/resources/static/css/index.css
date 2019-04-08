@@ -45,7 +45,7 @@
     white-space: nowrap;
 }
 #navigation >div:last-child p{
-    color: #2E5E99;
+    color: black;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -54,7 +54,7 @@
     height: 100%;
     box-sizing: border-box;
     min-height: 890px;
-    background: #2F5F9B;
+    background: rgb(212, 210, 210);
     padding: 1rem 1rem 30rem;
 }
 .nav > li > a{
@@ -63,7 +63,7 @@
 #navBar .nav-pills > li >a{
     display: flex;
     align-items: center;
-    color: #fff;
+    color: black;
     font-size: 1.5rem;
     font-weight: 500;
     border-radius: 3px;
@@ -83,7 +83,6 @@
 
 .nav-pills > li.active > a{
     font-weight: bold!important;
-    color: #CD2C06 !important;
     background: #fff !important;
 }
 #page1{

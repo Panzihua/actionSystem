@@ -3,23 +3,31 @@ package com.pan.auctionsystem.ManagerBase.controller;
 import com.pan.auctionsystem.ManagerBase.service.ManageOnlineService;
 import com.pan.auctionsystem.model.OnlineUserModel;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Controller("manageOnlineController")
+@RequestMapping("/auctionSystem")
 public class ManageOnlineController {
 
     @Resource(name = "manageOnlineService")
     private ManageOnlineService service;
 
-    //Json吧
-    public List<OnlineUserModel> selectAll(){
-        return service.selectAllUser();
+    @GetMapping("/getAllOnlineUser")
+    public String selectAll(Model model){
+        model.addAttribute("userList", service.selectAllUser());
+
+        return "OnlineUserList";
     }
 
-    //delete user后让JS再异步请求多次列表吧
-    public void deleOnlineUser(String userAccount){
-        service.removeOnlineUser(userAccount);
+    @GetMapping("/offUser")
+    public String deleteOnlineUser(String ip){
+        service.removeOnlineUser(ip );
+
+        return "redirect:getAllOnlineUser";
     }
 }

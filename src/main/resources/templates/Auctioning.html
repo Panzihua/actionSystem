@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Auctioning</title>
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <script src="/dist/jquery.min.js"></script>
+    <script src="/dist/bootstrap.js"></script>
+    <script src="/webjars/sockjs-client/1.0.2/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
+    <script src="/js/Auctioning.js"></script>
     <!--[if lt IE10]>
-    <script src="../static/dist/html5shiv.js"></script>
-    <script src="../static/dist/response.min.js"></script>
-    <link rel="stylesheet" href="../static/css/ie-css.css">
+    <script src="/dist/html5shiv.js"></script>
+    <script src="/dist/response.min.js"></script>
+    <link rel="stylesheet" href="/css/ie-css.css">
     <![endif]-->
-    <link rel="stylesheet" href="../static/dist/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/visitorRegister.css">
-    <link rel="stylesheet" href="../static/css/personalMsg.css">
+    <link rel="stylesheet" href="/dist/bootstrap.css">
+    <link rel="stylesheet" href="/css/visitorRegister.css">
+    <link rel="stylesheet" href="/css/personalMsg.css">
 </head>
 <body>
-<div class="container-fluid">
+<div style="display: none">
+    <span id="itemId" th:text="${item.itemId}"></span>
+    <span id="userName" th:text="${user.userName}"></span>
+    <span id="userAccount" th:text="${user.userAccount}"></span>
+</div>
+<div class="container-fluid" id="person-msg-box">
     <div class="panel-box">
         <div>
             <p class="form-title">Auctioning Information</p>
@@ -21,56 +32,52 @@
         <div>
             <div> <table class="table table-responsive table-striped person-table">
             <tr>
-                <th>Item</th>
                 <th>Item Name</th>
+                <th th:text="${item.itemName}" id="itemName"></th>
                 <th></th>
             </tr>
             <tr>
-                <td>
-                    来源地:
-                </td>
-                <td>
-                    Hong Kong Permanent Identity Card
-                </td>
-                <td rowspan="5" ><img src="../static/images/u635.jpg" alt=""></td>
+                <td>来源地:</td>
+                <td th:text="${item.itemFrom}"></td>
+                <td rowspan="3" ><img th:src="@{getPicture(fileName=${item.itemPicture})}" style="width: 144px; width: 144px"></td>
             </tr>
             <tr>
                 <td>上架日期:</td>
-                <td>C66666</td>
-
+                <td th:text="${#dates.format(item.itemShelfDate, 'yyyy-M-d H:m:s')}"></td>
             </tr>
             <tr>
                 <td>开始时间:</td>
-                <td>申智能</td>
+                <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')}"></td>
+                <td></td>
             </tr> 
             <tr>
                 <td>结束时间:</td>
-                <td>SAN, Chi Nan</td>
-            </tr>
-            <tr>
-                <td>起拍价:</td>
-                <td>Female</td>
+                <td th:text="${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
                 <td></td>
             </tr>
             <tr>
+                <td>起拍价:</td>
+                <td><input type="number" id="startPrice" th:value="${item.itemStartingPrice}" readonly="readonly"></td>
+            </tr>
+            <tr>
                 <td>每次加价不少于:</td>
-                <td>1988-01-01</td>
+                <td><input type="number" id="defaultIncrease" th:value="${item.itemIncreasePrice}" readonly="readonly"></td>
                 <td></td>
             </tr>
             <tr>
                 <td>当前出价:</td>
-                <td>1999-01</td>
+                <td><input type="number" id="nowPrice" th:value="${nowPrice}" readonly="readonly"></td>
                 <td></td>
             </tr>
             <tr style="height: 36px">
                 <td>出价：</td>
-                <td><input type="number"/></td>
+                <td><input type="number" id="offerPrice" /></td>
                 <td></td>
             </tr>
         </table></div>
             <div class=" btn-box text-center">
-                <button class="btn btn-default btn-primary">出价</button>
-                <button class="btn  btn-default btn-danger" >加价</button>
+                <button class="btn btn-default btn-primary" id="offerAPriceButton">出价</button>
+                <button class="btn  btn-default btn-danger" id="offerDefaultPriceButton">加价</button>
             </div>
         </div>
     </div>
@@ -83,26 +90,17 @@
             </div>
             <div id="commentDiv" style="overflow: auto; overflow-x: hidden; height: 130px; width: 90%; word-wrap: break-word;">
                     <ul id="commentArea">
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
-                        <li>afdafas</li>
+
                     </ul>
                 </div>
             <div class="text-center" style="top:30px">
                     <div class="form-group">
-                        <label for="Chinesename" class="col-sm-1 control-label">Account:</label>
+                        <label for="comment" class="col-sm-1 control-label">Account:</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="Chinesename">
+                            <input type="text" class="form-control" id="comment">
                             
                         </div>
-                        <button class="btn btn-default btn-primary">Send</button>
+                        <button class="btn btn-default btn-primary" id="sendButton">Send</button>
                     </div>
             </div>
         </div>

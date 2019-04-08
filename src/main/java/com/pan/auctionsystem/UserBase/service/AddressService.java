@@ -18,11 +18,11 @@ public class AddressService{
     private AuctionUserAddressDao addressDao;
 
     public List<AuctionUserAddress> selectAll(String ip) {
-        return addressDao.selectAllByUserId(Integer.parseInt(template.opsForValue().get(ip)));
+        return addressDao.selectAllByUserId(Integer.parseInt(template.opsForValue().get("ip_" + ip)));
     }
 
     public int updateOneByModel(AuctionUserAddress model, String ip) {
-        model.setUserId(Integer.parseInt(template.opsForValue().get(ip)));
+        model.setUserId(Integer.parseInt(template.opsForValue().get("ip_" + ip)));
         return addressDao.updateOneByModel(model);
     }
 
@@ -31,7 +31,7 @@ public class AddressService{
     }
 
     public int addOneByModel(AuctionUserAddress model, String ip) {
-        model.setUserId(Integer.parseInt(template.opsForValue().get(ip)));
+        model.setUserId(Integer.parseInt(template.opsForValue().get("ip_" + ip)));
         return addressDao.addOneByModel(model);
     }
 

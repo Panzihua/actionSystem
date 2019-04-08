@@ -7,4 +7,10 @@
         from auction_item
         where item_start_date between #{startTime} and #{endTime}
     </select>
+
+    <select id="selectItemDateTime2RedisForTest" useCache="false" parameterType="Long" resultType="AuctionItemForRedis">
+        select item_id, item_name, item_start_date, item_end_date, item_starting_price
+        from auction_item
+        where #{endTime} between item_start_date and item_end_date and item_status = 1
+    </select>
 </mapper>

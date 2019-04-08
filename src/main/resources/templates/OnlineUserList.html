@@ -32,11 +32,10 @@
                 <th>User ID</th>
                 <th>operation</th>
             </tr>
-            <tr>
-                <td>V-0322</td>
-                <td>V-Visitor</td>
-                <td>Kate Lee</td>
-                <td>1000500(1)</td>
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.ip}">V-0322</td>
+                <td th:text="${user.userId}">V-Visitor</td>
+                <td><a th:href="@{offUser(ip=${user.ip})}">off</a></td>
             </tr>
         </table>
     </div>
