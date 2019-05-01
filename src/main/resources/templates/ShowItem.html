@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="/css/identityInfo.css">
     <script src="/js/visitorRegister.js"></script>
     <script src="/js/ShowList.js"></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+
     <!--[if lt IE10]>
     <script src="/dist/html5shiv.js"></script>
     <script src="/dist/response.min.js"></script>
@@ -21,106 +24,152 @@
 
 </head>
 <body>
-<div id="loading-box">
-    <div class="container" id="visitor-register">
-        <div><p class="form-title">Condition</p></div>
-        <form>
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="col-md-12 form-horizontal">
-
-                        <div class="form-group">
-                            <label for="itemName" class="col-sm-5 control-label">Item Name:</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="itemName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="itemFrom" class="col-sm-5 control-label">Item From:</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="itemFrom">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-5  col-md-offset-1">
-                    <div class="col-md-12 form-horizontal" style="padding: 0;">
-
-                        <div class="form-group">
-                            <label for="shelfDate" class="col-sm-1 control-label">上架日期:</label>
-                            <div class="col-sm-7">
-                                <input type="date" class="form-control" id="shelfDate">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="shopName" class="col-sm-1 control-label">Shop Name:</label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="shopName">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </form>
-            <div class="col-md-11 text-center">
-                <div class="btn-group btn-box">
-                    <button class="btn btn-success" type="button" id="searchButton">Search</button>
-                </div>
-            </div>
-
+<!------------------标题条--------------------------->
+<nav id="navigation">
+    <div>
+        <p>Auction System</p>
     </div>
-    <div class="container" id="visitorRecord">
-        <div>
-            <p class="form-title">Search Result</p>
-        </div>
-        <div>
-            <div class="col-md-5  col-md-offset-1">
-                <div class="container-fluid" id="item-msg-box" style="width: 1550px; height: 100%">
-                    <div class="panel-box" style="height: 300px; width:400px; float: left; margin: 15px" th:each="item:${itemList}">
-                        <div>
-                            <p class="form-title">Item Information</p>
+</nav>
+<section id="body-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2" style="padding-left: 0">
+                <!----------------------侧边栏导航-------------------------->
+                <section id="navBar">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllItem">Item List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllSubscribe">Subscribe List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllOrder">Order List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/toUpdateUserInfo">User Info</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllAddress">Address List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllShopItem">Shop Item</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="col-md-10" style="padding-left: 0; overflow-x: hidden">
+                <!-----------------------连接内容--------------------------->
+                <div id="page1" style="max-width: 100%;overflow-x: hidden">
+                    <div id="loading-box">
+                        <div class="container" id="visitor-register">
+                            <div><p class="form-title">Condition</p></div>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="col-md-12 form-horizontal">
+
+                                            <div class="form-group">
+                                                <label for="itemName" class="col-sm-5 control-label">Item Name:</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" id="itemName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="itemFrom" class="col-sm-5 control-label">Item From:</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" id="itemFrom">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5  col-md-offset-1">
+                                        <div class="col-md-12 form-horizontal" style="padding: 0;">
+
+                                            <div class="form-group">
+                                                <label for="shelfDate" class="col-sm-1 control-label">上架日期:</label>
+                                                <div class="col-sm-7">
+                                                    <input type="date" class="form-control" id="shelfDate">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="shopName" class="col-sm-1 control-label">Shop:</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" id="shopName">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                            <div class="col-md-11 text-center">
+                                <div class="btn-group btn-box">
+                                    <button class="btn btn-success" type="button" id="searchButton">Search</button>
+                                </div>
+                            </div>
+
                         </div>
-                        <div> <table class="table table-responsive table-striped person-table">
-                            <tr>
-                                <td>商家:</td>
-                                <td th:text="${item.shopName}"></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>名称:</td>
-                                <td th:text="${item.itemName}"></td>
-                                <td rowspan="2" ><img th:src="@{getPicture(fileName=${item.itemPicture})}" style="height:90px; width:80px"></td>
-                            </tr>
-                            <tr>
-                                <td>开拍时间~结束时间:</td>
-                                <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')} + '~' +
+                        <div class="container" id="visitorRecord">
+                            <div>
+                                <p class="form-title">Search Result</p>
+                            </div>
+                            <div>
+                                <div class="col-md-5  col-md-offset-1">
+                                    <div class="container-fluid" id="item-msg-box" style="width: 1550px; height: 100%">
+                                        <div class="panel-box" style="height: 300px; width:400px; float: left; margin: 15px" th:each="item:${itemList}">
+                                            <div>
+                                                <p class="form-title">Item Information</p>
+                                            </div>
+                                            <div> <table class="table table-responsive table-striped person-table">
+                                                <tr>
+                                                    <td>商家:</td>
+                                                    <td th:text="${item.shopName}"></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>名称:</td>
+                                                    <td th:text="${item.itemName}"></td>
+                                                    <td rowspan="2" ><img th:src="@{getPicture(fileName=${item.itemPicture})}" style="height:90px; width:80px"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>开拍时间~结束时间:</td>
+                                                    <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')} + '~' +
                                 ${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}" th:if="${item.itemStartDate != null}"></td>
 
-                            </tr>
-                            <tr>
-                                <td>起拍价格:</td>
-                                <td th:text="${item.itemStartingPrice}"></td>
-                            </tr>
-                        </table></div>
-                        <div class=" btn-box text-center">
-                            <a class="btn btn-default btn-primary" th:href="@{detail(itemId=${item.itemId})}">Detail</a>
-                            <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
-                               th:href="@{toAuctioning(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
+                                                </tr>
+                                                <tr>
+                                                    <td>起拍价格:</td>
+                                                    <td th:text="${item.itemStartingPrice}"></td>
+                                                </tr>
+                                            </table></div>
+                                            <div class=" btn-box text-center">
+                                                <a class="btn btn-default btn-primary" th:href="@{detail(itemId=${item.itemId})}">Detail</a>
+                                                <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
+                                                   th:href="@{toAuctioning(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <div>
-        <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
-    </div>
+</section>
+<!-------------------------底部版权------------------------->
+<div class="container-fluid text-center" id="copyright">
+    <p>&#169 Amo</p>
 </div>
-
 </body>
 </html>

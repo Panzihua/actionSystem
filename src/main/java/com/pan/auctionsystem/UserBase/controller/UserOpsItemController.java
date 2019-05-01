@@ -41,7 +41,8 @@ public class UserOpsItemController implements CRUDController<AuctionItem> {
     @ResponseBody
     @Override
     public List<AuctionItem> selectByCondition(@RequestBody AuctionItem condition) {
-        return auctionItemService.selectByCondition(condition);
+        List list = auctionItemService.selectByCondition(condition);
+        return list;
     }
 
     @GetMapping("/detail")
@@ -71,11 +72,10 @@ public class UserOpsItemController implements CRUDController<AuctionItem> {
     }
 
     @PostMapping("/updateUserInfo")
-    @ResponseBody
-    public Boolean updateUserInfo(@RequestBody AuctionUserInfo model, HttpServletRequest request){
+    public String updateUserInfo(AuctionUserInfo model, HttpServletRequest request){
         userService.updateUserInfoByModel(model, request.getRemoteAddr());
 
-        return true;
+        return "redirect:toUpdateUserInfo";
     }
 
     @GetMapping("/toUpdateUserInfo")

@@ -9,4 +9,12 @@ public class OfferAPrice {
     private String userAccount;
     private int itemId;
     private String itemName;
+
+    private String remark;
+
+    public OfferAPrice setRemark(String remark){
+        this.remark = remark;
+
+        return this;
+    }
 }

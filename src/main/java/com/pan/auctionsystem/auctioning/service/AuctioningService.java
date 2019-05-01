@@ -14,6 +14,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @Service("auctioningService")
 public class AuctioningService {
@@ -29,12 +30,17 @@ public class AuctioningService {
 
         BoundHashOperations<String, String,String> itemRedisOp = template.boundHashOps("item_" + offerAPrice.getItemId() + "_" + offerAPrice.getItemName());
         int price = Integer.parseInt(itemRedisOp.get("itemPrice"));
-        String ip = template.opsForValue().get(offerAPrice.getUserAccount());
+        String ip_ = template.opsForValue().get(offerAPrice.getUserAccount());
+
+        if (ip_ == null) return null;
+
+        template.expire(offerAPrice.getUserAccount(), 1, TimeUnit.HOURS);
 
         if (price < offerAPrice.getPrice()){
-            String userId = template.opsForValue().get(ip);
-            System.out.println(template.opsForValue().get("ip_" + ip));
-            System.out.println(userId);
+            String userId = template.opsForValue().get(ip_);
+
+            if (userId == null) return null;
+
             itemRedisOp.put("userId", userId);
             itemRedisOp.put("itemPrice", String.valueOf(offerAPrice.getPrice()));
 
@@ -45,11 +51,11 @@ public class AuctioningService {
     }
 
     public AuctionUser signUpInRedis(String ip){
-        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip).toString());
+        int userId = Integer.parseInt(template.opsForValue().get("ip_" + ip));
 
         AuctionUser user = userDao.findAccountById(userId);
 
-        template.opsForValue().set(user.getUserAccount(), "ip_" + ip);
+        template.opsForValue().set(user.getUserAccount(), "ip_" + ip, 1, TimeUnit.HOURS);
 
         return user;
     }

@@ -67,7 +67,8 @@
         <div class=" btn-box text-center">
                    <a class="btn btn-default btn-primary" th:if="${item.wasSubscribe == 0}" id="subscribeButton">订阅</a>
                    <a class="btn btn-default btn-primary" th:if="${item.wasSubscribe == 1}" id="subscribeButton">取消订阅</a>
-                   <a class="btn btn-default btn-danger" th:if="${item.auctioning}">正在拍卖</a>
+            <a class="btn btn-danger btn-primary" th:if="${item.auctioning}"
+               th:href="@{toAuctioning(itemId=${item.itemId})}" style="margin-left: 11px">正在拍卖</a>
                    <a onclick="javascript:history.go(-1);">Back</a>
                </div>
     </div>

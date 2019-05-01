@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller("manageOnlineController")
-@RequestMapping("/auctionSystem")
+@RequestMapping("/Manager")
 public class ManageOnlineController {
 
     @Resource(name = "manageOnlineService")

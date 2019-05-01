@@ -1,38 +1,30 @@
 package com.pan.auctionsystem.Interceptor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.temporal.Temporal;
+import java.util.concurrent.TimeUnit;
 
-public class AuctioningTimeInterceptor implements HandlerInterceptor {
+@Component
+public class LoginInterceptor implements HandlerInterceptor {
 
-    @Resource(name = "redisTemplate")
+    @Resource(name = "stringRedisTemplate")
     private StringRedisTemplate template;
-
-    @Autowired
-    @Getter @Setter
-    private ObjectMapper objectMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String ip = request.getRemoteAddr();
 
-        Object userId = template.opsForValue().get(ip);
+        String userId = template.opsForValue().get("ip_" + ip);
 
         try {
             if (userId == null) {
-                response.sendRedirect("登录页面");
+                response.sendRedirect("/Login.html");
                 return false;
             } else {
                 return true;
@@ -42,5 +34,10 @@ public class AuctioningTimeInterceptor implements HandlerInterceptor {
         }
 
         return false;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex){
+        template.expire("ip_" + request.getRemoteAddr(), 1, TimeUnit.HOURS);
     }
 }

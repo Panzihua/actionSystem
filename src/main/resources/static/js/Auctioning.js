@@ -71,6 +71,8 @@ function sendPrice(price) {
     };
 
     stompClient.send("/auctionSystem/auctioningOp/offerAPrice", {}, JSON.stringify(offerAPrice));
+
+    alert("出价成功");
 }
 
 function increasePrice() {

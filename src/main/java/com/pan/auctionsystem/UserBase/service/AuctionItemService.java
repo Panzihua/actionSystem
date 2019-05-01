@@ -36,8 +36,6 @@ public class AuctionItemService implements CRUDService<AuctionItem> {
             item.setAuctioning(false);
 
             if (item.getItemStartDate() != null) {
-                System.out.println(item.getItemStartDate() <= now);
-                System.out.println(item.getItemEndDate() >= now);
                 if (item.getItemStartDate() <= now && item.getItemEndDate() >= now)
                     item.setAuctioning(true);
             }

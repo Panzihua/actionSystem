@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/visitorRegister.css">
     <link rel="stylesheet" href="/css/identityInfo.css">
-    <script src="/js/visitorRegister.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
     <!--[if lt IE10]>
     <script src="/dist/html5shiv.js"></script>
     <script src="/dist/response.min.js"></script>
@@ -20,45 +20,93 @@
 
 </head>
 <body>
-<div id="loading-box">
-<div class="container" id="visitorRecord">
+<!------------------标题条--------------------------->
+<nav id="navigation">
     <div>
-        <p class="form-title">Item List</p>
+        <p>Auction System</p>
     </div>
-    <div>
-        <table class="table  table-hover table-responsive th-primary">
-            <tr>
-                <th>Item Name</th>
-                <th>来源地</th>
-                <th>上架日期</th>
-                <th>开始拍卖时间</th>
-                <th>结束拍卖时间</th>
-                <th>起拍价</th>
-                <th>每次加价不少于</th>
-                <th>operation</th>
-            </tr>
-            <tr th:each="item : ${itemList}">
-                <td th:text="${item.itemName}"></td>
-                <td th:text="${item.itemFrom}"></td>
-                <td th:text="${#dates.format(item.itemShelfDate, 'yyyy-M-d')}"></td>
-                <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')}"></td>
-                <td th:text="${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
-                <td th:text="${item.itemStartingPrice}"></td>
-                <td th:text="${item.itemIncreasePrice}"></td>
-                <td><a th:href="@{shopItemDetail(itemId=${item.itemId})}" th:if="${!item.auctioning}">Detail</a>
-                    <a th:href="@{toSetDate(itemId=${item.itemId})}" th:if="${item.itemStartDate == null}" style="margin-left: 15px">SetDate</a>
-                    <a th:href="@{deleteShopItem(itemId=${item.itemId})}" style="margin-left: 15px"
-                    th:if="${item.itemStartDate == null}">Delete</a>
-                <span th:if="${item.auctioning}">正在拍卖</span></td>
-            </tr>
-        </table>
+</nav>
+<section id="body-box">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2" style="padding-left: 0">
+                <!----------------------侧边栏导航-------------------------->
+                <section id="navBar">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllItem">Item List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllSubscribe">Subscribe List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllOrder">Order List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/toUpdateUserInfo">User Info</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllAddress">Address List</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/auctionSystem/getAllShopItem">Shop Item</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="col-md-10" style="padding-left: 0; overflow-x: hidden">
+                <!-----------------------连接内容--------------------------->
+                <div id="page1" style="max-width: 100%;overflow-x: hidden">
+                    <div id="loading-box">
+                        <div class="container" id="visitorRecord">
+                            <div>
+                                <p class="form-title">Item List</p>
+                            </div>
+                            <div>
+                                <table class="table  table-hover table-responsive th-primary">
+                                    <tr>
+                                        <th>Item Name</th>
+                                        <th>来源地</th>
+                                        <th>上架日期</th>
+                                        <th>开始拍卖时间</th>
+                                        <th>结束拍卖时间</th>
+                                        <th>起拍价</th>
+                                        <th>每次加价不少于</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                    <tr th:each="item : ${itemList}">
+                                        <td th:text="${item.itemName}"></td>
+                                        <td th:text="${item.itemFrom}"></td>
+                                        <td th:text="${#dates.format(item.itemShelfDate, 'yyyy-M-d')}"></td>
+                                        <td th:text="${#dates.format(item.itemStartDate, 'yyyy-M-d H:m:s')}"></td>
+                                        <td th:text="${#dates.format(item.itemEndDate, 'yyyy-M-d H:m:s')}"></td>
+                                        <td th:text="${item.itemStartingPrice}"></td>
+                                        <td th:text="${item.itemIncreasePrice}"></td>
+                                        <td><a th:href="@{shopItemDetail(itemId=${item.itemId})}" th:if="${!item.auctioning}">Detail</a>
+                                            <a th:href="@{toSetDate(itemId=${item.itemId})}" th:if="${item.itemStartDate == null}" style="margin-left: 15px">Set Date</a>
+                                            <a th:href="@{deleteShopItem(itemId=${item.itemId})}" style="margin-left: 15px"
+                                               th:if="${item.itemStartDate == null}">Delete</a>
+                                            <span th:if="${item.auctioning}">正在拍卖</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class=" btn-box text-center">
+                                <a class="btn btn-default btn-primary" href="/auctionSystem/toAddItem">Add New</a>
+                            </div>
+                            <div>
+                                <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class=" btn-box text-center">
-        <a class="btn btn-default btn-primary" href="/auctionSystem/toAddItem">Add New</a>
-    </div>
-    <div>
-        <span style="float:right; right: 0%;" id="PageBox"><a id="prevButton">Prev</a> 1/1 <a id="nextButton">Next</a></span>
-    </div>
+</section>
+<!-------------------------底部版权------------------------->
+<div class="container-fluid text-center" id="copyright">
+    <p>&#169 Amo</p>
 </div>
 </body>
 </html>

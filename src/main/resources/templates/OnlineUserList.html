@@ -30,12 +30,12 @@
             <tr>
                 <th>IP</th>
                 <th>User ID</th>
-                <th>operation</th>
+                <th>Operation</th>
             </tr>
             <tr th:each="user : ${userList}">
                 <td th:text="${user.ip}">V-0322</td>
                 <td th:text="${user.userId}">V-Visitor</td>
-                <td><a th:href="@{offUser(ip=${user.ip})}">off</a></td>
+                <td><a th:href="@{offUser(ip=${user.ip})}">Off</a></td>
             </tr>
         </table>
     </div>

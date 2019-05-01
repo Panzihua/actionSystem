@@ -6,13 +6,11 @@ import com.pan.auctionsystem.model.AuctionUserPackage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller("userController")
-@RequestMapping("/auctionSystem")
 public class LoginSignUpController {
 
     @Resource(name = "userService")
@@ -20,8 +18,11 @@ public class LoginSignUpController {
 
     @PostMapping("/signIn")
     public String signIn(AuctionUser user, HttpServletRequest request){
+        if (user.getUserAccount().equals("admin") && user.getUserPassword().equals("admin"))
+            return "redirect:/Manager/getAllOnlineUser";
+
         if (userService.signInService(user, request.getRemoteAddr())){
-            return "redirect:getAllItem";
+            return "redirect:/auctionSystem/getAllItem";
         }else{
             return "redirect:/Login.html";
         }
@@ -31,10 +32,10 @@ public class LoginSignUpController {
     public String signUp(AuctionUserPackage userPackage){
         userService.signUpService(userPackage);
 
-        return "login页面";
+        return "redirect:/Login.html";
     }
 
-    @GetMapping("toSignUp")
+    @GetMapping("/toSignUp")
     public String toSignUp(){
         return "SignUp.html";
     }

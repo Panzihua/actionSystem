@@ -44,15 +44,7 @@ public class AuctionSchedule {
             hmOp.put("startTime", item.getItemStartDate().toString());
             hmOp.put("endTime", item.getItemEndDate().toString());
             hmOp.put("itemId", String.valueOf(item.getItemId()));
-            System.out.println(String.valueOf(item.getItemStartingPrice()));
             hmOp.put("itemPrice", String.valueOf(item.getItemStartingPrice()));
-            System.out.println(hmOp.get("itemPrice"));
-
-            //调试用
-            String aaa = hmOp.get("startTime");
-            String bbb = hmOp.get("endTime");
-
-            System.out.println(aaa + "  " + bbb);
         }
 
     }

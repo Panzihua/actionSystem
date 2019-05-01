@@ -44,7 +44,7 @@ public class UserService {
 
     public void putUserInRedis(AuctionUser user, String ip){
         template.opsForValue().set("ip_" + ip, String.valueOf(user.getUserId()));
-//        template.expire(ip, 1, TimeUnit.HOURS);
+        template.expire("ip_" + ip, 1, TimeUnit.HOURS);
     }
 
     public void signUpService(AuctionUserPackage userPackage){

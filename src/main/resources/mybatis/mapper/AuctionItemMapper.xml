@@ -71,6 +71,7 @@
         item_shop_id, auction_user_info.user_name as shopName, item_starting_price, item_increase_price, item_picture
         from auction_item as item, auction_user as shop, auction_user_subscript as sb, auction_user_info
         where item.item_shop_id = shop.user_id and sb.user_id = #{userId} and sb.item_id = item.item_id and shop.user_id = auction_user_info.user_id
+        and item.item_status = 1
     </select>
     
     <select id="selectAllByShopId" resultType="AuctionItem">
